@@ -1,7 +1,28 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\views\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\views\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\views\\settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\views\\settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +39,71 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppShell.xaml",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\AppShell.xaml",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\AppShell.xaml",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\AppShell.xaml",
+              "RelativeToolTip": "TransducerAppMaui\\AppShell.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-16T19:33:50.838Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\App.xaml",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\App.xaml",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\App.xaml",
+              "RelativeToolTip": "TransducerAppMaui\\App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-16T19:33:46.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Properties\\launchSettings.json",
+              "RelativeToolTip": "TransducerAppMaui\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-16T19:33:43.065Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SettingsPage.xaml",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Views\\SettingsPage.xaml",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\Views\\SettingsPage.xaml",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Views\\SettingsPage.xaml",
+              "RelativeToolTip": "TransducerAppMaui\\Views\\SettingsPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-16T19:29:38.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SettingsPage.xaml.cs",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Views\\SettingsPage.xaml.cs",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\Views\\SettingsPage.xaml.cs",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Views\\SettingsPage.xaml.cs",
+              "RelativeToolTip": "TransducerAppMaui\\Views\\SettingsPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T19:25:39.151Z",
+              "EditorCaption": ""
             }
           ]
         }
