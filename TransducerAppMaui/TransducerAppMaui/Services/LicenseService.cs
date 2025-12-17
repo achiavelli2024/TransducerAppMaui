@@ -161,4 +161,25 @@ public sealed class LicenseService
             return;
         }
     }
+
+
+#if DEBUG
+    /// <summary>
+    /// DEBUG ONLY: limpa a licença armazenada para forçar o prompt aparecer novamente.
+    /// </summary>
+    public void ResetLicenseForDebug()
+    {
+        try
+        {
+            Preferences.Remove(PrefsKeyLicense);
+        }
+        catch { }
+    }
+#endif
+
+
+
+
+
+
 }

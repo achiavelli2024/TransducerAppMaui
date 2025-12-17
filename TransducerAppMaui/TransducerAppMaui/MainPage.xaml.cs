@@ -42,6 +42,20 @@ public partial class MainPage : ContentPage
                 return;
             }
 
+#if DEBUG
+            // Diagnóstico: ajuda a entender por que não está aparecendo o prompt.
+            // Se IsLicenseValid() for true, o prompt NÃO aparece.
+            var keyCode = lic.GetKeyCode();
+            var isValid = lic.IsLicenseValid();
+
+            // Exibe 1 vez apenas para debug
+            await DisplayAlert("DEBUG LICENÇA",
+                $"KeyCode atual: {keyCode}\nIsLicenseValid: {isValid}\n\n" +
+                "Se IsLicenseValid=true, o app não pedirá licença.\n" +
+                "Para forçar, limpe os dados do app (Android) ou implemente Reset (DEBUG).",
+                "OK");
+#endif
+
             await lic.EnsureLicenseAsync(this);
         }
         catch (Exception ex)
@@ -49,6 +63,4 @@ public partial class MainPage : ContentPage
             await DisplayAlert("Erro", "Falha ao validar licença: " + ex.Message, "OK");
         }
     }
-
-
 }
