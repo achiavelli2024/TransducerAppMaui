@@ -73,7 +73,6 @@
 	  <Folder Include="LogsCode\" />
 	  <Folder Include="Helpers\" />
 	  <Folder Include="Platforms\Android\Helpers\" />
-	  <Folder Include="Services\" />
 	  <Folder Include="ViewModels\" />
 	</ItemGroup>
 
