@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 
-namespace TransducerAppXA
+namespace TransducerAppMaui.Logs
 {
     // Logger simples e thread-safe usado pelo projeto.
     // Ajustes:

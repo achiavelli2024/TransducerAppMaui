@@ -15,11 +15,14 @@ using System.Net.Sockets;
 
 // Logger namespace (assegure que TransducerLogger.cs esteja neste namespace)
 //using Transducer_Estudo;
-using TransducerAppXA;
+//using TransducerAppXA;
 //using TransducerAppMaui.LogsCode;
+using TransducerAppMaui.Drivers;
+using TransducerAppMaui.Logs;
 
 
-namespace Transducers
+
+namespace TransducerAppMaui.Drivers
 {
     // PhoenixTransducer - versão instrumentada com TransducerLogger
     // - Mantive lógica original; adicionei logs não-invasivos em pontos estratégicos

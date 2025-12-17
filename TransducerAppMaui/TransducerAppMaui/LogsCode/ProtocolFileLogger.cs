@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace TransducerAppXA
+namespace TransducerAppMaui.Logs
 {
     /// <summary>
     /// Logger de protocolo: grava em arquivo quando possível e sempre dispara OnLogWritten para UI.

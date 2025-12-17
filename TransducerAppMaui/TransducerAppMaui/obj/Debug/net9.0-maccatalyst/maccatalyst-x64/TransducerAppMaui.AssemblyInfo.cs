@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TransducerAppMaui")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+8bd38f355b959b85853a409fb15efbde61d1c858")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+5450addf6a5bbb818fda5dfd80c81e759cfccfa5")]
 [assembly: System.Reflection.AssemblyProductAttribute("TransducerAppMaui")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TransducerAppMaui")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

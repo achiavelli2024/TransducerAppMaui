@@ -1,7 +1,52 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\logscode\\transducerlogandroid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\logscode\\transducerlogandroid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\helpers\\dbhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\helpers\\dbhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\logscode\\transducerpcprotocol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\logscode\\transducerpcprotocol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\drivers\\phoenixtransducer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\drivers\\phoenixtransducer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\logscode\\transducerlogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\logscode\\transducerlogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\logscode\\protocolfilelogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\logscode\\protocolfilelogger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\drivers\\itransducer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\drivers\\itransducer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\drivers\\debuginformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\drivers\\debuginformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\drivers\\dataresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\drivers\\dataresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\drivers\\datainformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\drivers\\datainformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|c:\\m\\transducerappmaui\\transducerappmaui\\transducerappmaui\\drivers\\countersinformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2261EDD2-8490-4AA6-8A8E-9D1C34EE266E}|TransducerAppMaui\\TransducerAppMaui.csproj|solutionrelative:transducerappmaui\\drivers\\countersinformation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +63,149 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DbHelper.cs",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Helpers\\DbHelper.cs",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\Helpers\\DbHelper.cs",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Helpers\\DbHelper.cs",
+              "RelativeToolTip": "TransducerAppMaui\\Helpers\\DbHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T17:59:10.192Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TransducerPcProtocol.cs",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\LogsCode\\TransducerPcProtocol.cs",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\LogsCode\\TransducerPcProtocol.cs",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\LogsCode\\TransducerPcProtocol.cs",
+              "RelativeToolTip": "TransducerAppMaui\\LogsCode\\TransducerPcProtocol.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T17:57:08.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TransducerLogger.cs",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\LogsCode\\TransducerLogger.cs",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\LogsCode\\TransducerLogger.cs",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\LogsCode\\TransducerLogger.cs",
+              "RelativeToolTip": "TransducerAppMaui\\LogsCode\\TransducerLogger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T17:57:01.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TransducerLogAndroid.cs",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\LogsCode\\TransducerLogAndroid.cs",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\LogsCode\\TransducerLogAndroid.cs",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\LogsCode\\TransducerLogAndroid.cs",
+              "RelativeToolTip": "TransducerAppMaui\\LogsCode\\TransducerLogAndroid.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T17:56:55.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProtocolFileLogger.cs",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\LogsCode\\ProtocolFileLogger.cs",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\LogsCode\\ProtocolFileLogger.cs",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\LogsCode\\ProtocolFileLogger.cs",
+              "RelativeToolTip": "TransducerAppMaui\\LogsCode\\ProtocolFileLogger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T17:56:45.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PhoenixTransducer.cs",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Drivers\\PhoenixTransducer.cs",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\Drivers\\PhoenixTransducer.cs",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Drivers\\PhoenixTransducer.cs",
+              "RelativeToolTip": "TransducerAppMaui\\Drivers\\PhoenixTransducer.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T17:54:44.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DebugInformation.cs",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Drivers\\DebugInformation.cs",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\Drivers\\DebugInformation.cs",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Drivers\\DebugInformation.cs",
+              "RelativeToolTip": "TransducerAppMaui\\Drivers\\DebugInformation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T17:54:15.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CountersInformation.cs",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Drivers\\CountersInformation.cs",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\Drivers\\CountersInformation.cs",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Drivers\\CountersInformation.cs",
+              "RelativeToolTip": "TransducerAppMaui\\Drivers\\CountersInformation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T17:54:00.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DataResult.cs",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Drivers\\DataResult.cs",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\Drivers\\DataResult.cs",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Drivers\\DataResult.cs",
+              "RelativeToolTip": "TransducerAppMaui\\Drivers\\DataResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T17:52:44.333Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DataInformation.cs",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Drivers\\DataInformation.cs",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\Drivers\\DataInformation.cs",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Drivers\\DataInformation.cs",
+              "RelativeToolTip": "TransducerAppMaui\\Drivers\\DataInformation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T17:52:28.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ITransducer.cs",
+              "DocumentMoniker": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Drivers\\ITransducer.cs",
+              "RelativeDocumentMoniker": "TransducerAppMaui\\Drivers\\ITransducer.cs",
+              "ToolTip": "C:\\M\\TransducerAppMaui\\TransducerAppMaui\\TransducerAppMaui\\Drivers\\ITransducer.cs",
+              "RelativeToolTip": "TransducerAppMaui\\Drivers\\ITransducer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T17:52:03.291Z",
+              "EditorCaption": ""
             }
           ]
         }
