@@ -1,15 +1,10 @@
 ﻿namespace TransducerAppMaui.Views
 {
-    public partial class SettingsPages : ContentPage
+    public partial class SettingsPage : ContentPage
     {
-        
-
-        public SettingsPages()
+        public SettingsPage()
         {
             InitializeComponent();
         }
-
-        
     }
-
 }

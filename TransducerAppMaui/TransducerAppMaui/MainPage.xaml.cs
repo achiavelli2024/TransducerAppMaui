@@ -1,4 +1,6 @@
-﻿namespace TransducerAppMaui
+﻿using TransducerAppMaui.Views;
+
+namespace TransducerAppMaui
 {
     public partial class MainPage : ContentPage
     {
@@ -20,6 +22,13 @@
 
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
+
+        private async void OnOpenSettingsClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(SettingsPage));
+        }
+
+
     }
 
 }

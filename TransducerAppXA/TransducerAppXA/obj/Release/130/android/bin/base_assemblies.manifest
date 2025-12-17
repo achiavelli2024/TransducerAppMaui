@@ -1,0 +1,26 @@
+Hash 32     Hash 64             Blob ID  Blob idx  Name
+0xc6e08176  0x4cede7ad6e57d917  000      0000      TransducerAppXA
+0x38f24a24  0x18071957e9b889d7  000      0001      Newtonsoft.Json
+0xe70c9739  0xa3d8433bc5eb5d95  000      0002      SQLite-net
+0x2ca248c0  0x55cf092b0c9d6f59  000      0003      SQLitePCLRaw.batteries_v2
+0xc849ca45  0x120fce3f338e43c6  000      0004      SQLitePCLRaw.core
+0x660284a1  0x0c1500ead2756d7f  000      0005      SQLitePCLRaw.lib.e_sqlite3.android
+0xdfca27bc  0x151223783a354eca  000      0006      SQLitePCLRaw.provider.e_sqlite3
+0xc86c06e3  0x90bf592ea44f6673  000      0007      Xamarin.AndroidX.Core
+0x1a605985  0x4836f704f0e652c5  000      0008      Xamarin.Essentials
+0x3751ef41  0xbab63e4543a86cec  000      0009      Xamarin.Google.Guava.ListenableFuture
+0xc8a662e9  0x77b654e585b55834  000      0010      Java.Interop
+0x98ba5a04  0x6b58dda848e391fe  000      0011      Microsoft.CSharp
+0xcf3163e6  0x01accec39cafe242  000      0012      Mono.Android
+0x1bc4415d  0xe99c30c1484d7f4f  000      0013      mscorlib
+0xfdf2741f  0xa7f5f40c43256f62  000      0014      System.Buffers
+0xf76edc75  0x98f9bc61168392ac  000      0015      System.Core
+0x41761b2c  0xe03056ea4e39aa26  000      0016      System
+0x132b30dd  0x31042a9aade235bb  000      0017      System.Numerics
+0x5423e47b  0x207163383edbc828  000      0018      System.Runtime.CompilerServices.Unsafe
+0xcc6479a0  0x992e31d0412bf7fc  000      0019      System.Xml
+0x8334206b  0x6a3a4366801b8264  000      0020      System.Net.Http
+0xc5b79d28  0x6c87ca1e14ff8111  000      0021      System.Data
+0xb979e222  0xb98de304062ea945  000      0022      System.Runtime.Serialization
+0xd128d608  0x5f6f85a57d108914  000      0023      System.Xml.Linq
+0xc197c562  0x8ac2470b209ebae3  000      0024      Mono.Security

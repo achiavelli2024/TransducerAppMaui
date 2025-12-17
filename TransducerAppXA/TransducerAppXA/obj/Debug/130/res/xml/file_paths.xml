@@ -1,0 +1,1 @@
+<paths xmlns:android="http://schemas.android.com/apk/res/android"><!-- Permite apontar para os arquivos na pasta GetExternalFilesDir(...) --><external-files-path name="external_files" path="." /><!-- (Opcional) se quiser permitir abrir arquivos na pasta FilesDir --><files-path name="internal_files" path="." /></paths>

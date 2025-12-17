@@ -35,8 +35,10 @@
                 x:Name="btnSettings"
                 Text="Settings" 
                 SemanticProperties.Hint="Move to Settings"
-                Clicked="OnCounterClicked"
+                Clicked="OnOpenSettingsClicked"
                 HorizontalOptions="Fill" />
+
+            
 
 
 

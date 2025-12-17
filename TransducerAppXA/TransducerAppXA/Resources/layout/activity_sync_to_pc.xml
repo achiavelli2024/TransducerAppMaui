@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:padding="8dp">
+
+  <!-- Top: connection row -->
+  <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <EditText android:id="@+id/edtIp" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:hint="IP" />
+    <EditText android:id="@+id/edtPort" android:layout_width="80dp" android:layout_height="wrap_content" android:inputType="number" android:hint="Port" android:layout_marginLeft="4dp"/>
+    <EditText android:id="@+id/edtToken" android:layout_width="0dp" android:layout_weight="1.2" android:layout_height="wrap_content" android:hint="Token" android:layout_marginLeft="4dp"/>
+  </LinearLayout>
+
+  <!-- Buttons -->
+  <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp">
+    <Button android:id="@+id/btnConnect" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CONNECT" />
+    <Button android:id="@+id/btnDisconnect" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DISCONNECT" android:layout_marginLeft="8dp"/>
+    <Button android:id="@+id/btnSendAll" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SEND ALL" android:layout_marginLeft="8dp"/>
+    <Button android:id="@+id/btnSendUnsent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SEND UNSENT" android:layout_marginLeft="8dp"/>
+    <EditText android:id="@+id/edtSendId" android:layout_width="80dp" android:layout_height="wrap_content" android:hint="Id" android:layout_marginLeft="8dp"/>
+    <Button android:id="@+id/btnSendId" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SEND ID" android:layout_marginLeft="4dp"/>
+  </LinearLayout>
+
+  <!-- Status / Progress -->
+  <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp">
+    <TextView android:id="@+id/tvStatus" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disconnected" />
+    <ProgressBar android:id="@+id/progressBar" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="12dp"/>
+  </LinearLayout>
+
+  <!-- Main content: Tests list (left) and Log (right) -->
+  <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:layout_marginTop="8dp">
+
+    <!-- Tests received -->
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="0.45" android:layout_height="match_parent">
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Testes recebidos:" android:textStyle="bold"/>
+      <ListView android:id="@+id/lvTests" android:layout_width="match_parent" android:layout_height="match_parent" android:dividerHeight="1dp"/>
+    </LinearLayout>
+
+    <!-- Log -->
+    <LinearLayout android:orientation="vertical" android:layout_width="0dp" android:layout_weight="0.55" android:layout_height="match_parent" android:layout_marginLeft="8dp">
+      <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Log:" android:textStyle="bold"/>
+      <ListView android:id="@+id/lvLog" android:layout_width="match_parent" android:layout_height="match_parent" android:dividerHeight="1dp"/>
+    </LinearLayout>
+
+  </LinearLayout>
+
+</LinearLayout>
