@@ -127,7 +127,7 @@
                     <Label Text="Parameters" FontAttributes="Bold" FontSize="14" TextColor="#212121"/>
 
                     <!-- Threshold / Timeout / Frequency -->
-                    <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="6" RowSpacing="6">
+                    <Grid ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="4" RowSpacing="6">
                         <Label Text="Threshold:" FontSize="12" TextColor="#424242" VerticalOptions="Center"/>
                         <Entry x:Name="ThresholdEntry" Grid.Column="1" WidthRequest="70" HeightRequest="36"
                                HorizontalTextAlignment="Center" FontSize="12" Keyboard="Numeric"/>
