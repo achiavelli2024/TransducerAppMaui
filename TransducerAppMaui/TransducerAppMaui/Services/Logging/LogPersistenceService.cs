@@ -1,22 +1,24 @@
-﻿using TransducerAppMaui.Helpers;
+﻿using System.Text;
+using TransducerAppMaui.Helpers;
+using TransducerAppMaui.Logs;
 
 namespace TransducerAppMaui.Services.Logging;
 
 /// <summary>
-/// Serviço responsável por persistir logs do AppLog no SQLite (DbHelper).
-/// - NÃO mexe na UI
-/// - Não deixa exceção de DB derrubar o app
+/// Persiste logs do AppLog + ProtocolFileLogger no SQLite (DbHelper).
+/// - Não pode quebrar o app se DB falhar.
+/// - Foco: rastrear RX/TX e logs críticos.
 /// </summary>
 public sealed class LogPersistenceService : ILogPersistenceService
 {
-    private readonly IAppLog _log;
+    private readonly IAppLog _appLog;
     private readonly DbHelper _db;
 
     private bool _started;
 
-    public LogPersistenceService(IAppLog log, DbHelper db)
+    public LogPersistenceService(IAppLog appLog, DbHelper db)
     {
-        _log = log;
+        _appLog = appLog;
         _db = db;
     }
 
@@ -24,25 +26,30 @@ public sealed class LogPersistenceService : ILogPersistenceService
     {
         if (_started) return;
 
-        _log.OnLogAppended += OnLogAppended;
+        _appLog.OnLogAppended += OnAppLogAppended;
+
+        // Captura RX/TX do protocolo (pacotes)
+        ProtocolFileLogger.OnLogWritten += OnProtocolLogWritten;
+
         _started = true;
 
-        _log.Info("DB", "LogPersistenceService started (subscribed to AppLog)");
+        _appLog.Info("DB", "LogPersistenceService started (AppLog + ProtocolFileLogger subscribed)");
     }
 
     public void Stop()
     {
         if (!_started) return;
 
-        _log.OnLogAppended -= OnLogAppended;
+        _appLog.OnLogAppended -= OnAppLogAppended;
+        ProtocolFileLogger.OnLogWritten -= OnProtocolLogWritten;
+
         _started = false;
 
-        _log.Info("DB", "LogPersistenceService stopped (unsubscribed from AppLog)");
+        _appLog.Info("DB", "LogPersistenceService stopped (unsubscribed)");
     }
 
-    private void OnLogAppended(AppLogRecord rec)
+    private void OnAppLogAppended(AppLogRecord rec)
     {
-        // Persistência deve ser rápida e resiliente
         try
         {
             _db.InsertLog(new LogEntry
@@ -53,8 +60,50 @@ public sealed class LogPersistenceService : ILogPersistenceService
         }
         catch
         {
-            // Nunca deixar falha de DB derrubar o app.
-            // (Se quiser, na próxima etapa podemos colocar fila + flush em batch)
+            // Nunca derrubar o app por falha de DB
         }
+    }
+
+    private void OnProtocolLogWritten(string direction, string text, byte[] raw)
+    {
+        try
+        {
+            // Monta uma linha bem parecida com seu padrão do Xamarin:
+            // PROTO: [RX] texto | HEX: ...
+            var sb = new StringBuilder();
+            sb.Append("PROTO: ");
+            sb.Append('[').Append(direction ?? "LOG").Append("] ");
+            sb.Append(text ?? "");
+
+            if (raw != null && raw.Length > 0)
+            {
+                sb.Append(" | HEX: ");
+                sb.Append(ToHex(raw));
+            }
+
+            var line = sb.ToString();
+
+            // 1) Também manda pro AppLog (pra UI ver ao vivo, se quiser)
+            try { _appLog.Raw("PROTO", line, raw); } catch { }
+
+            // 2) Persiste no DB
+            _db.InsertLog(new LogEntry
+            {
+                TimestampUtc = DateTime.UtcNow,
+                Message = line
+            });
+        }
+        catch
+        {
+            // Nunca derrubar o app por falha de DB/log
+        }
+    }
+
+    private static string ToHex(byte[] bytes)
+    {
+        if (bytes == null) return "";
+        var sb = new StringBuilder(bytes.Length * 3);
+        foreach (var b in bytes) sb.AppendFormat("{0:X2} ", b);
+        return sb.ToString().Trim();
     }
 }

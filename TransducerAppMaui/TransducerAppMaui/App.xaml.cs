@@ -1,4 +1,5 @@
 ﻿using TransducerAppMaui.Services;
+using TransducerAppMaui.Services.Logging;
 using TransducerAppMaui.Views;
 
 namespace TransducerAppMaui;
@@ -29,6 +30,21 @@ public partial class App : Application
                 await Task.Delay(250);
 
                 var services = Current?.Handler?.MauiContext?.Services;
+
+
+                // START: log persistence (APP + PROTO -> SQLite)
+                try
+                {
+                    services?.GetService<ILogPersistenceService>()?.Start();
+                }
+                catch { }
+                // END: log persistence
+
+
+
+
+
+
                 var lic = services?.GetService<LicenseService>();
                 if (lic is null)
                     return;

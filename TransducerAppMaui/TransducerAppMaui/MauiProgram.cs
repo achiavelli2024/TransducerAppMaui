@@ -31,6 +31,11 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<LicenseService>();
 
+        // DB SQLite (já existe DbHelper no projeto)
+        builder.Services.AddSingleton<DbHelper>();
+
+
+
         // NOVO: logger central do APP (camada MAUI)
         builder.Services.AddSingleton<IAppLog, AppLog>();
 

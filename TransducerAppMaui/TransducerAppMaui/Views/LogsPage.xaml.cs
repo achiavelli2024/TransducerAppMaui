@@ -15,6 +15,7 @@ public partial class LogsPage : ContentPage
     public LogsPage(DbHelper db, IAppLog appLog)
     {
         InitializeComponent();
+
         _db = db;
         _appLog = appLog;
 
@@ -50,7 +51,7 @@ public partial class LogsPage : ContentPage
 
     private void OnLogAppended(AppLogRecord rec)
     {
-        // Atualização em tempo real na tela de logs
+        // Atualização ao vivo (inclusive PROTO porque LogPersistenceService envia Raw("PROTO"...))
         MainThread.BeginInvokeOnMainThread(() =>
         {
             _items.Insert(0, rec.ToString());
@@ -64,14 +65,16 @@ public partial class LogsPage : ContentPage
         try
         {
             _appLog.Info("UI", "LogsPage: loading logs from DB...");
-
-            var list = await Task.Run(() => _db.GetRecentLogs(1000));
+            var list = await Task.Run(() => _db.GetRecentLogs(1500));
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 _items.Clear();
                 foreach (var l in list)
+                {
+                    // l.Message já está formatado, mas garantimos timestamp visível
                     _items.Add($"{l.TimestampUtc.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff} - {l.Message}");
+                }
             });
 
             _appLog.Info("UI", $"LogsPage: loaded {list.Count} logs from DB.");
@@ -87,11 +90,10 @@ public partial class LogsPage : ContentPage
     {
         try
         {
-            _appLog.Warn("DB", "LogsPage: clearing logs table...");
-
+            _appLog.Warn("DB", "LogsPage: clearing logs...");
             await Task.Run(() => _db.ClearAllLogs());
 
-            _items.Clear();
+            MainThread.BeginInvokeOnMainThread(() => _items.Clear());
 
             _appLog.Info("DB", "LogsPage: logs cleared.");
         }
