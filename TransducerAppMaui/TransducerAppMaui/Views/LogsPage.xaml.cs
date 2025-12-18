@@ -1,5 +1,6 @@
-using System.Collections.Concurrent;
+ï»¿using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using TransducerAppMaui.Helpers;
@@ -22,13 +23,8 @@ public partial class LogsPage : ContentPage
     private const int LOG_FLUSH_MS = 350;
     private const int FLUSH_BATCH = 50;
 
-    
     // Limites (UI) - DB continua com tudo
     private const int MAX_LOG_ITEMS = 1500;
-
-
-
-    
 
     // Pause/resume (igual Xamarin)
     private volatile bool _logsPaused = false;
@@ -65,17 +61,20 @@ public partial class LogsPage : ContentPage
     {
         base.OnAppearing();
 
-        // 1) Carrega do DB apenas para “seed” inicial (igual seu LoadDataFromDbAsync do Xamarin)
+        // IMPORTANTE: ao entrar, comeÃ§a PAUSADO para nÃ£o competir com UI enquanto carrega e renderiza
+        _logsPaused = true;
+        InfoLabel.Text = "Loading from DB... (paused)";
+
         await ReloadFromDbAsync();
 
-        // 2) Subscribe para live logs (igual TransducerLogAndroid.OnLogAppended no Xamarin)
+        // Subscribe para live logs (igual Xamarin)
         if (!_subscribed)
         {
             TransducerLogAndroid.OnLogAppended += TransducerLog_OnLogAppended;
             _subscribed = true;
         }
 
-        InfoLabel.Text = $"Running | Showing {_logItems.Count}";
+        InfoLabel.Text = $"Paused | Showing {_logItems.Count}";
     }
 
     protected override void OnDisappearing()
@@ -89,10 +88,9 @@ public partial class LogsPage : ContentPage
         }
     }
 
-
     private static string UiCompact(string line)
     {
-        // reduz custo de renderização sem perder rastreabilidade (DB/CSV continuam completos)
+        // reduz custo de renderizaÃ§Ã£o sem perder rastreabilidade (DB/CSV continuam completos)
         if (string.IsNullOrEmpty(line)) return "";
 
         // se tiver HEX gigantesco, corta para preview
@@ -102,21 +100,17 @@ public partial class LogsPage : ContentPage
         return line.Substring(0, maxLen) + " ...";
     }
 
-
-
     private void TransducerLog_OnLogAppended(TransducerLogAndroid.LogRecord rec)
     {
         try
         {
             if (_logsPaused) return;
 
-            // Igual Xamarin: joga na fila e agenda flush
-            _pendingLogs.Enqueue(rec.ToString());
+            // âœ… CRÃTICO: NÃƒO DUPLICAR. Calcula ToString() uma vez sÃ³.
+            var s = rec?.ToString() ?? "";
+            _pendingLogs.Enqueue(UiCompact(s));
 
-            _pendingLogs.Enqueue(UiCompact(rec.ToString()));
-
-
-            // evita explosão
+            // evita explosÃ£o
             if (_pendingLogs.Count > 20000)
                 _pendingLogs.TryDequeue(out _);
 
@@ -187,10 +181,9 @@ public partial class LogsPage : ContentPage
 
     private async Task ReloadFromDbAsync()
     {
+        var sw = Stopwatch.StartNew();
         try
         {
-            InfoLabel.Text = "Loading from DB...";
-
             // semelhante ao Xamarin: recentLogs = db.GetRecentLogs(1000);
             var list = await Task.Run(() => _db.GetRecentLogs(1000));
 
@@ -199,10 +192,9 @@ public partial class LogsPage : ContentPage
                 _logItems.Clear();
                 foreach (var l in list)
                 {
+                    // Note: l.Message jÃ¡ pode estar formatado. Mantemos como vocÃª estÃ¡.
                     _logItems.Add($"{l.TimestampUtc.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff} - {l.Message}");
                 }
-
-                InfoLabel.Text = $"Loaded {_logItems.Count} from DB";
             });
         }
         catch (Exception ex)
@@ -210,13 +202,18 @@ public partial class LogsPage : ContentPage
             TransducerLogAndroid.LogException(ex, "ReloadFromDbAsync");
             await DisplayAlert("Erro", "Falha ao carregar logs do DB: " + ex.Message, "OK");
         }
+        finally
+        {
+            sw.Stop();
+            InfoLabel.Text = $"Loaded {_logItems.Count} from DB in {sw.ElapsedMilliseconds} ms | Paused";
+        }
     }
 
     private async Task ClearDbAsync()
     {
         try
         {
-            var ok = await DisplayAlert("Confirmar", "Apagar todos os logs do banco?", "SIM", "NÃO");
+            var ok = await DisplayAlert("Confirmar", "Apagar todos os logs do banco?", "SIM", "NÃƒO");
             if (!ok) return;
 
             await Task.Run(() => _db.ClearAllLogs());
@@ -281,25 +278,19 @@ public partial class LogsPage : ContentPage
         return sb.ToString();
     }
 
-    // Ver linha completa (porque na tela não cabe mesmo)
     private async void LogsList_ItemTapped(object sender, ItemTappedEventArgs e)
     {
         try
         {
             if (e.Item is not string line) return;
 
-            // evita ficar “selecionado”
             LogsList.SelectedItem = null;
 
             var action = await DisplayActionSheet("Log", "Cancelar", null, "Copiar", "Ver completo");
             if (action == "Copiar")
-            {
                 await Clipboard.Default.SetTextAsync(line);
-            }
             else if (action == "Ver completo")
-            {
                 await DisplayAlert("Log completo", line, "OK");
-            }
         }
         catch
         {
