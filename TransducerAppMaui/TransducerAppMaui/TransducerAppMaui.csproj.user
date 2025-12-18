@@ -15,7 +15,7 @@
     <MauiXaml Update="MainHomePage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
-    <MauiXaml Update="Views\FreetestPage.xaml">
+    <MauiXaml Update="Views\FreeTestPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Views\LicensePage.xaml">

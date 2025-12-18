@@ -28,6 +28,11 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<LicenseService>();
 
+        // NOVO: serviço do transdutor (única instância)
+        builder.Services.AddSingleton<ITransducerService, TransducerService>();
+
+
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
