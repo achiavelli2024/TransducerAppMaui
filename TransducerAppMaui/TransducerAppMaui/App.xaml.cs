@@ -1,5 +1,6 @@
-﻿using TransducerAppMaui.Services;
-using TransducerAppMaui.Services.Logging;
+﻿using TransducerAppMaui.Helpers;
+using TransducerAppMaui.Logs;
+using TransducerAppMaui.Services;
 using TransducerAppMaui.Views;
 
 namespace TransducerAppMaui;
@@ -19,67 +20,44 @@ public partial class App : Application
 
         window.Created += async (_, __) =>
         {
-            if (_licenseCheckedOnce)
-                return;
-
+            if (_licenseCheckedOnce) return;
             _licenseCheckedOnce = true;
 
             try
             {
-                // Pequeno delay garante que a UI e o Shell já estão prontos
                 await Task.Delay(250);
 
                 var services = Current?.Handler?.MauiContext?.Services;
 
-
-                // START: log persistence (APP + PROTO -> SQLite)
+                // ✅ Xamarin-like logger init
                 try
                 {
-                    services?.GetService<ILogPersistenceService>()?.Start();
+                    var db = services?.GetService<DbHelper>();
+                    if (db != null)
+                    {
+                        TransducerLogAndroid.Initialize(db);
+                        TransducerLogAndroid.LogInfo("Logger initialized (Xamarin-like).");
+                    }
                 }
-                catch { }
-                // END: log persistence
-
-
-
-
-
+                catch (Exception ex)
+                {
+                    // fallback mínimo (não pode travar app)
+                    try { System.Diagnostics.Debug.WriteLine("TransducerLogAndroid init error: " + ex); } catch { }
+                }
 
                 var lic = services?.GetService<LicenseService>();
-                if (lic is null)
-                    return;
-
-#if DEBUG
-                // Para forçar teste, você pode descomentar:
-                // lic.ResetLicenseForDebug();
-#endif
+                if (lic is null) return;
 
                 if (!lic.IsLicenseValid())
                 {
-                    // Abre a LicensePage modal (robusto, controlado, igual Xamarin)
                     var page = new LicensePage(lic);
                     await Shell.Current.Navigation.PushModalAsync(page);
                 }
             }
             catch
             {
-                // Se quiser logar depois, adicionamos logger
+                // swallow
             }
-
-
-            try
-            {
-                var services = Current?.Handler?.MauiContext?.Services;
-
-                // inicia persistência de logs (uma vez)
-                services?.GetService<TransducerAppMaui.Services.Logging.ILogPersistenceService>()?.Start();
-            }
-            catch
-            {
-                // não derrubar app por causa de log
-            }
-
-
         };
 
         return window;

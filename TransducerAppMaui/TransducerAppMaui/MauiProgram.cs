@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using TransducerAppMaui.Helpers;
 using TransducerAppMaui.Services;
 using TransducerAppMaui.Services.Logging;
-using TransducerAppMaui.Helpers;
-
 
 namespace TransducerAppMaui;
 
@@ -19,10 +18,6 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        // =========================
-        // Dependency Injection (DI)
-        // =========================
-
 #if ANDROID
         builder.Services.AddSingleton<IDeviceIdProvider, AndroidDeviceIdProvider>();
 #else
@@ -31,30 +26,15 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<LicenseService>();
 
-        // DB SQLite (já existe DbHelper no projeto)
+        // SQLite
         builder.Services.AddSingleton<DbHelper>();
 
-
-
-        // NOVO: logger central do APP (camada MAUI)
-        builder.Services.AddSingleton<IAppLog, AppLog>();
-
-        // NOVO: serviço do transdutor (única instância)
+        // Serviço transdutor
         builder.Services.AddSingleton<ITransducerService, TransducerService>();
 
-
-        // DB (SQLite) - instância única
-        builder.Services.AddSingleton<DbHelper>();
-
-        // Logger central do APP
+        // Mantemos AppLog por enquanto (não vou quebrar chamadas existentes),
+        // mas o “logger oficial” para RX/TX e DB será TransducerLogAndroid (Xamarin-like).
         builder.Services.AddSingleton<IAppLog, AppLog>();
-
-        // NOVO: persiste logs no SQLite
-        builder.Services.AddSingleton<ILogPersistenceService, LogPersistenceService>();
-
-
-
-
 
 #if DEBUG
         builder.Logging.AddDebug();

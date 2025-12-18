@@ -7,16 +7,23 @@
 
     <VerticalStackLayout Padding="10" Spacing="10" BackgroundColor="#FAFAFA">
 
-        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+        <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="8">
             <Label Text="Logs (SQLite)" FontAttributes="Bold" FontSize="14" TextColor="#212121" />
             <Button x:Name="RefreshButton" Grid.Column="1" Text="REFRESH" FontSize="10" HeightRequest="36"/>
-            <Button x:Name="ClearButton" Grid.Column="2" Text="CLEAR" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="ExportButton" Grid.Column="2" Text="EXPORT CSV" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="ClearButton" Grid.Column="3" Text="CLEAR" FontSize="10" HeightRequest="36"/>
+        </Grid>
+
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+            <Label x:Name="InfoLabel" Text="Ready" FontSize="12" TextColor="#616161" VerticalOptions="Center"/>
+            <Button x:Name="LoadMoreButton" Grid.Column="1" Text="LOAD +" FontSize="10" HeightRequest="36"/>
         </Grid>
 
         <CollectionView x:Name="LogsCollection" SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding .}" FontSize="12" TextColor="#212121" />
+                    <!-- Crucial: sem WordWrap, senão mata performance -->
+                    <Label Text="{Binding .}" FontSize="12" TextColor="#212121" LineBreakMode="TailTruncation"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
