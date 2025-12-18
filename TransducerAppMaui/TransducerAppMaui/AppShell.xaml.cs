@@ -9,6 +9,7 @@ namespace TransducerAppMaui
             InitializeComponent();
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
             Routing.RegisterRoute(nameof(FreeTestPage), typeof(FreeTestPage));
+            Routing.RegisterRoute(nameof(LogsPage), typeof(LogsPage));
 
 
         }

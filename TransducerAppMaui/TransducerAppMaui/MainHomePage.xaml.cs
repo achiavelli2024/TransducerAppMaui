@@ -18,6 +18,15 @@ public partial class MainHomePage : ContentPage
         await Shell.Current.GoToAsync(nameof(FreeTestPage));
     }
 
+    private async void OpenLogsPageButtonClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(LogsPage));
+    }
+
+
+
+
+
 
 
 }

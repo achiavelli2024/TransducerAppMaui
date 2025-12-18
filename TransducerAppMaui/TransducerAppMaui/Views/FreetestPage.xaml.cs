@@ -1,7 +1,10 @@
-﻿using System.Globalization;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using TransducerAppMaui.Drivers;
 using TransducerAppMaui.Models;
 using TransducerAppMaui.Services;
+using TransducerAppMaui.Services.Logging;
+
 
 namespace TransducerAppMaui.Views;
 
@@ -11,6 +14,14 @@ public partial class FreeTestPage : ContentPage
 
     // Evita duplicar subscribe/unsubscribe quando navega pra frente/volta
     private bool _subscribed;
+
+    private readonly IAppLog _appLog;
+    private readonly ObservableCollection<string> _logLines = new();
+    private const int MAX_LOG_LINES = 2000;
+
+
+
+
 
     public FreeTestPage()
     {
@@ -33,6 +44,14 @@ public partial class FreeTestPage : ContentPage
         // Pega serviço via DI
         _transducerService = Application.Current!.Handler!.MauiContext!.Services.GetService<ITransducerService>()
                            ?? throw new InvalidOperationException("ITransducerService não registrado no DI.");
+
+
+        _appLog = Application.Current!.Handler!.MauiContext!.Services.GetRequiredService<IAppLog>();
+
+        // setar ItemsSource 1x
+        LogsCollection.ItemsSource = _logLines;
+
+
 
         // Defaults visuais (igual Xamarin)
         ApplyDefaultsToUi();
@@ -57,7 +76,13 @@ public partial class FreeTestPage : ContentPage
             _transducerService.LiveDataReceived += OnLiveDataReceived;
             _transducerService.ErrorRaised += OnErrorRaised;
             _subscribed = true;
+
+            _appLog.OnLogAppended += OnAppLogAppended;
         }
+
+        
+
+
 
         // Reaplica estado atual do serviço na UI (importante ao voltar para a tela)
         OnConnectionChanged(_transducerService.IsConnected);
@@ -76,8 +101,27 @@ public partial class FreeTestPage : ContentPage
             _transducerService.LiveDataReceived -= OnLiveDataReceived;
             _transducerService.ErrorRaised -= OnErrorRaised;
             _subscribed = false;
+
+            _appLog.OnLogAppended -= OnAppLogAppended;
+
         }
     }
+
+    private void OnAppLogAppended(AppLogRecord rec)
+    {
+        if (ShowLogsSwitch?.IsToggled == false) return;
+        if (PauseLogsSwitch?.IsToggled == true) return;
+
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            _logLines.Insert(0, rec.ToString());
+            if (_logLines.Count > MAX_LOG_LINES)
+                _logLines.RemoveAt(_logLines.Count - 1);
+        });
+
+    }
+
+
 
     private void ApplyDefaultsToUi()
     {

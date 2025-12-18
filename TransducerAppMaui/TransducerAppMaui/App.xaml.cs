@@ -49,6 +49,21 @@ public partial class App : Application
             {
                 // Se quiser logar depois, adicionamos logger
             }
+
+
+            try
+            {
+                var services = Current?.Handler?.MauiContext?.Services;
+
+                // inicia persistência de logs (uma vez)
+                services?.GetService<TransducerAppMaui.Services.Logging.ILogPersistenceService>()?.Start();
+            }
+            catch
+            {
+                // não derrubar app por causa de log
+            }
+
+
         };
 
         return window;

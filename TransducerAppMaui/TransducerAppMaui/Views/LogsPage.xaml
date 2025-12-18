@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="TransducerAppMaui.Views.LogsPage"
+    Title="Logs">
+
+    <VerticalStackLayout Padding="10" Spacing="10" BackgroundColor="#FAFAFA">
+
+        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+            <Label Text="Logs (SQLite)" FontAttributes="Bold" FontSize="14" TextColor="#212121" />
+            <Button x:Name="RefreshButton" Grid.Column="1" Text="REFRESH" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="ClearButton" Grid.Column="2" Text="CLEAR" FontSize="10" HeightRequest="36"/>
+        </Grid>
+
+        <CollectionView x:Name="LogsCollection" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding .}" FontSize="12" TextColor="#212121" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

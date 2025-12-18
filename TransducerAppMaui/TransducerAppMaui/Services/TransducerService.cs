@@ -1,5 +1,7 @@
 ﻿using TransducerAppMaui.Drivers;
 using TransducerAppMaui.Models;
+using TransducerAppMaui.Services.Logging;
+
 
 namespace TransducerAppMaui.Services;
 
