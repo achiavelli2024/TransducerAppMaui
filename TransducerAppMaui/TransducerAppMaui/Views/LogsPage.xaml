@@ -14,19 +14,26 @@
             <Button x:Name="ClearButton" Grid.Column="3" Text="CLEAR" FontSize="10" HeightRequest="36"/>
         </Grid>
 
-        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
             <Label x:Name="InfoLabel" Text="Ready" FontSize="12" TextColor="#616161" VerticalOptions="Center"/>
-            <Button x:Name="LoadMoreButton" Grid.Column="1" Text="LOAD +" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="PauseButton" Grid.Column="1" Text="PAUSE" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="ResumeButton" Grid.Column="2" Text="RESUME" FontSize="10" HeightRequest="36"/>
         </Grid>
 
-        <CollectionView x:Name="LogsCollection" SelectionMode="None">
-            <CollectionView.ItemTemplate>
+        <!-- Xamarin-like: ListView simples e rápido -->
+        <ListView x:Name="LogsList"
+                  SelectionMode="None"
+                  HasUnevenRows="False"
+                  RowHeight="22"
+                  SeparatorVisibility="None"
+                  VerticalOptions="FillAndExpand"
+                  ItemTapped="LogsList_ItemTapped">
+            <ListView.ItemTemplate>
                 <DataTemplate>
-                    <!-- Crucial: sem WordWrap, senão mata performance -->
-                    <Label Text="{Binding .}" FontSize="12" TextColor="#212121" LineBreakMode="TailTruncation"/>
+                    <TextCell Text="{Binding .}" />
                 </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </VerticalStackLayout>
 </ContentPage>
