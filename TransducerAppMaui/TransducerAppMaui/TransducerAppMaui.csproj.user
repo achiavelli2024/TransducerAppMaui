@@ -12,6 +12,12 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
+    <MauiXaml Update="MainHomePage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\FreetestPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\LicensePage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

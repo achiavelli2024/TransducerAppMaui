@@ -83,6 +83,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="MainHomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\FreetestPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\LicensePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
