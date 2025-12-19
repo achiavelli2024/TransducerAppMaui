@@ -14,13 +14,14 @@
             <Button x:Name="ClearButton" Grid.Column="3" Text="CLEAR" FontSize="10" HeightRequest="36"/>
         </Grid>
 
-        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+        <!-- Aqui deixamos igual ao Xamarin: info + botões de controle -->
+        <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="8">
             <Label x:Name="InfoLabel" Text="Ready" FontSize="12" TextColor="#616161" VerticalOptions="Center"/>
-            <Button x:Name="PauseButton" Grid.Column="1" Text="PAUSE" FontSize="10" HeightRequest="36"/>
-            <Button x:Name="ResumeButton" Grid.Column="2" Text="RESUME" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="LoadMoreButton" Grid.Column="1" Text="LOAD +" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="PauseButton" Grid.Column="2" Text="PAUSE" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="ResumeButton" Grid.Column="3" Text="RESUME" FontSize="10" HeightRequest="36"/>
         </Grid>
 
-        <!-- Xamarin-like: ListView simples e rápido -->
         <ListView x:Name="LogsList"
                   SelectionMode="None"
                   HasUnevenRows="False"

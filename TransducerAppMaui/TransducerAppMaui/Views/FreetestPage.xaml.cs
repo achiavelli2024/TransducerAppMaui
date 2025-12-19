@@ -15,9 +15,9 @@ public partial class FreeTestPage : ContentPage
     // Evita duplicar subscribe/unsubscribe quando navega pra frente/volta
     private bool _subscribed;
 
-    private readonly IAppLog _appLog;
-    private readonly ObservableCollection<string> _logLines = new();
-    private const int MAX_LOG_LINES = 2000;
+    //private readonly IAppLog _appLog;
+    //private readonly ObservableCollection<string> _logLines = new();
+    //private const int MAX_LOG_LINES = 2000;
 
 
 
@@ -46,10 +46,10 @@ public partial class FreeTestPage : ContentPage
                            ?? throw new InvalidOperationException("ITransducerService não registrado no DI.");
 
 
-        _appLog = Application.Current!.Handler!.MauiContext!.Services.GetRequiredService<IAppLog>();
+        //_appLog = Application.Current!.Handler!.MauiContext!.Services.GetRequiredService<IAppLog>();
 
         // setar ItemsSource 1x
-        LogsCollection.ItemsSource = _logLines;
+        //LogsCollection.ItemsSource = _logLines;
 
 
 
@@ -77,7 +77,7 @@ public partial class FreeTestPage : ContentPage
             _transducerService.ErrorRaised += OnErrorRaised;
             _subscribed = true;
 
-            _appLog.OnLogAppended += OnAppLogAppended;
+            //_appLog.OnLogAppended += OnAppLogAppended;
         }
 
         
@@ -102,7 +102,7 @@ public partial class FreeTestPage : ContentPage
             _transducerService.ErrorRaised -= OnErrorRaised;
             _subscribed = false;
 
-            _appLog.OnLogAppended -= OnAppLogAppended;
+            //_appLog.OnLogAppended -= OnAppLogAppended;
 
         }
     }
@@ -114,9 +114,9 @@ public partial class FreeTestPage : ContentPage
 
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            _logLines.Insert(0, rec.ToString());
-            if (_logLines.Count > MAX_LOG_LINES)
-                _logLines.RemoveAt(_logLines.Count - 1);
+            //_logLines.Insert(0, rec.ToString());
+            //if (_logLines.Count > MAX_LOG_LINES)
+                //_logLines.RemoveAt(_logLines.Count - 1);
         });
 
     }

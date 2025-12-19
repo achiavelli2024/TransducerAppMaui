@@ -11,7 +11,7 @@ public partial class LogsPage : ContentPage
 {
     private readonly DbHelper _db;
 
-    // LIVE
+    // LIVE (fila)
     private readonly ObservableCollection<string> _liveItems = new();
     private readonly ConcurrentQueue<string> _pendingLogs = new();
 
@@ -25,30 +25,34 @@ public partial class LogsPage : ContentPage
 
     private bool _showingDbSnapshot = true;
 
-    // Xamarin-like: carregar por páginas
+    // ✅ Igual Xamarin: paginação
     private const int PAGE_SIZE = 200;
-    private int _take = PAGE_SIZE;
+    private int _take = 600; // default para você já ver seus ~600
 
     public LogsPage(DbHelper db)
     {
         InitializeComponent();
         _db = db;
 
+        // começa com live (vazio). Em seguida mostra snapshot.
         LogsList.ItemsSource = _liveItems;
 
         RefreshButton.Clicked += async (_, __) =>
         {
-            _take = PAGE_SIZE;
+            _take = 600; // reset padrão
             await LoadDbSnapshotAsync();
         };
 
-        // Reaproveita o botão RESUME como "LIVE" e PAUSE como "snapshot"
+        LoadMoreButton.Clicked += async (_, __) =>
+        {
+            _take += PAGE_SIZE;
+            await LoadDbSnapshotAsync();
+        };
+
         PauseButton.Clicked += async (_, __) =>
         {
             _logsPaused = true;
             _showingDbSnapshot = true;
-
-            // volta a mostrar snapshot do DB
             await LoadDbSnapshotAsync();
         };
 
@@ -77,7 +81,7 @@ public partial class LogsPage : ContentPage
         _logsPaused = true;
         _showingDbSnapshot = true;
 
-        // não bloqueia abertura: carrega depois
+        // carrega depois (não trava abertura)
         _ = LoadDbSnapshotAsync();
 
         if (!_subscribed)
@@ -173,9 +177,9 @@ public partial class LogsPage : ContentPage
         {
             InfoLabel.Text = "Loading DB...";
 
-            var snapshot = await Task.Run(() =>
+            // monta tudo fora da UI thread e aplica em lote (igual NotifyDataSetChanged)
+            var (total, outList) = await Task.Run(() =>
             {
-                // conta total para você entender se realmente tem 600 no DB
                 int total = 0;
                 try { total = _db.CountLogs(); } catch { }
 
@@ -190,9 +194,8 @@ public partial class LogsPage : ContentPage
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                // aplica em lote: rolável e mais leve
-                LogsList.ItemsSource = snapshot.outList;
-                InfoLabel.Text = $"DB: showing {snapshot.outList.Count} / total {snapshot.total} (take={_take})";
+                LogsList.ItemsSource = outList;
+                InfoLabel.Text = $"DB: showing {outList.Count} / total {total} (take={_take})";
             });
         }
         catch (Exception ex)
