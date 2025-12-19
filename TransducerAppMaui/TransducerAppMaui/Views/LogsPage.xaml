@@ -5,22 +5,30 @@
     x:Class="TransducerAppMaui.Views.LogsPage"
     Title="Logs">
 
-    <VerticalStackLayout Padding="10" Spacing="10" BackgroundColor="#FAFAFA">
+    <!-- FIX SCROLL: usar Grid com RowDefinitions em vez de VerticalStackLayout -->
+    <Grid Padding="10"
+          RowDefinitions="Auto,Auto,*"
+          RowSpacing="10"
+          BackgroundColor="#FAFAFA">
 
-        <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="8">
+        <!-- Linha 0 -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="8">
             <Label Text="Logs (SQLite)" FontAttributes="Bold" FontSize="14" TextColor="#212121" />
             <Button x:Name="RefreshButton" Grid.Column="1" Text="LOAD" FontSize="10" HeightRequest="36"/>
             <Button x:Name="LoadMoreButton" Grid.Column="2" Text="LOAD +" FontSize="10" HeightRequest="36"/>
             <Button x:Name="ClearScreenButton" Grid.Column="3" Text="CLEAR UI" FontSize="10" HeightRequest="36"/>
         </Grid>
 
-        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+        <!-- Linha 1 -->
+        <Grid Grid.Row="1" ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
             <Label x:Name="InfoLabel" Text="Ready" FontSize="12" TextColor="#616161" VerticalOptions="Center"/>
             <Button x:Name="ExportButton" Grid.Column="1" Text="EXPORT CSV" FontSize="10" HeightRequest="36"/>
             <Button x:Name="ClearButton" Grid.Column="2" Text="CLEAR DB" FontSize="10" HeightRequest="36"/>
         </Grid>
 
-        <ListView x:Name="LogsList"
+        <!-- Linha 2 (ocupa o resto da tela => scroll funciona) -->
+        <ListView Grid.Row="2"
+                  x:Name="LogsList"
                   CachingStrategy="RecycleElement"
                   SelectionMode="None"
                   HasUnevenRows="False"
@@ -34,7 +42,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
 
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>
