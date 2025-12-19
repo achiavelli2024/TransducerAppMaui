@@ -34,7 +34,9 @@ public static class MauiProgram
 
         // Mantemos AppLog por enquanto (não vou quebrar chamadas existentes),
         // mas o “logger oficial” para RX/TX e DB será TransducerLogAndroid (Xamarin-like).
-        builder.Services.AddSingleton<IAppLog, AppLog>();
+        
+        
+        //builder.Services.AddSingleton<IAppLog, AppLog>();
 
 #if DEBUG
         builder.Logging.AddDebug();

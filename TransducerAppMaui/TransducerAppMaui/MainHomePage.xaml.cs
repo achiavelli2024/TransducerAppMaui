@@ -23,6 +23,13 @@ public partial class MainHomePage : ContentPage
         await Shell.Current.GoToAsync(nameof(LogsPage));
     }
 
+    private async void OpenSettingsPageButtonClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(SettingsPage));
+    }
+
+
+
 
 
 

@@ -37,6 +37,13 @@
                 Clicked="OpenLogsPageButtonClicked"
                 HorizontalOptions="Fill" />
 
+            <Button
+                x:Name="OpenSettingsPageButton"
+                Text="Settings" 
+                SemanticProperties.Hint="Settings"
+                Clicked="OpenSettingsPageButtonClicked"
+                HorizontalOptions="Fill" />
+
 
         </VerticalStackLayout>
     
