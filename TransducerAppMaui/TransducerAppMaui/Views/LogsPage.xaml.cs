@@ -1,6 +1,5 @@
 ﻿using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using TransducerAppMaui.Helpers;
@@ -12,69 +11,80 @@ public partial class LogsPage : ContentPage
 {
     private readonly DbHelper _db;
 
-    // UI list (equivalente ao logItems do Xamarin)
-    private readonly ObservableCollection<string> _logItems = new();
-
-    // Queue (equivalente ao pendingLogs do Xamarin)
+    // LIVE
+    private readonly ObservableCollection<string> _liveItems = new();
     private readonly ConcurrentQueue<string> _pendingLogs = new();
 
-    // Controle de flush (equivalente ao LOG_FLUSH_MS + Handler)
     private bool _flushScheduled;
     private const int LOG_FLUSH_MS = 350;
     private const int FLUSH_BATCH = 50;
+    private const int MAX_LIVE_ITEMS = 1500;
 
-    // Limites (UI) - DB continua com tudo
-    private const int MAX_LOG_ITEMS = 1500;
-
-    // Pause/resume (igual Xamarin)
     private volatile bool _logsPaused = false;
-
-    // Subscribe guard
     private bool _subscribed;
+
+    private bool _showingDbSnapshot = true;
+
+    // Xamarin-like: carregar por páginas
+    private const int PAGE_SIZE = 200;
+    private int _take = PAGE_SIZE;
 
     public LogsPage(DbHelper db)
     {
         InitializeComponent();
-
         _db = db;
 
-        LogsList.ItemsSource = _logItems;
+        LogsList.ItemsSource = _liveItems;
 
-        RefreshButton.Clicked += async (_, __) => await ReloadFromDbAsync();
-        ClearButton.Clicked += async (_, __) => await ClearDbAsync();
-        ExportButton.Clicked += async (_, __) => await ExportCsvAndShareAsync();
+        RefreshButton.Clicked += async (_, __) =>
+        {
+            _take = PAGE_SIZE;
+            await LoadDbSnapshotAsync();
+        };
 
-        PauseButton.Clicked += (_, __) =>
+        // Reaproveita o botão RESUME como "LIVE" e PAUSE como "snapshot"
+        PauseButton.Clicked += async (_, __) =>
         {
             _logsPaused = true;
-            InfoLabel.Text = $"Paused | Showing {_logItems.Count}";
+            _showingDbSnapshot = true;
+
+            // volta a mostrar snapshot do DB
+            await LoadDbSnapshotAsync();
         };
 
         ResumeButton.Clicked += (_, __) =>
         {
             _logsPaused = false;
-            InfoLabel.Text = $"Running | Showing {_logItems.Count}";
+
+            if (_showingDbSnapshot)
+            {
+                _showingDbSnapshot = false;
+                LogsList.ItemsSource = _liveItems;
+                _liveItems.Clear();
+            }
+
+            InfoLabel.Text = $"Running | Live {_liveItems.Count}";
         };
+
+        ClearButton.Clicked += async (_, __) => await ClearDbAsync();
+        ExportButton.Clicked += async (_, __) => await ExportCsvAndShareAsync();
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
 
-        // IMPORTANTE: ao entrar, começa PAUSADO para não competir com UI enquanto carrega e renderiza
         _logsPaused = true;
-        InfoLabel.Text = "Loading from DB... (paused)";
+        _showingDbSnapshot = true;
 
-        await ReloadFromDbAsync();
+        // não bloqueia abertura: carrega depois
+        _ = LoadDbSnapshotAsync();
 
-        // Subscribe para live logs (igual Xamarin)
         if (!_subscribed)
         {
             TransducerLogAndroid.OnLogAppended += TransducerLog_OnLogAppended;
             _subscribed = true;
         }
-
-        InfoLabel.Text = $"Paused | Showing {_logItems.Count}";
     }
 
     protected override void OnDisappearing()
@@ -90,13 +100,9 @@ public partial class LogsPage : ContentPage
 
     private static string UiCompact(string line)
     {
-        // reduz custo de renderização sem perder rastreabilidade (DB/CSV continuam completos)
         if (string.IsNullOrEmpty(line)) return "";
-
-        // se tiver HEX gigantesco, corta para preview
         const int maxLen = 180;
         if (line.Length <= maxLen) return line;
-
         return line.Substring(0, maxLen) + " ...";
     }
 
@@ -105,21 +111,17 @@ public partial class LogsPage : ContentPage
         try
         {
             if (_logsPaused) return;
+            if (_showingDbSnapshot) return;
 
-            // ✅ CRÍTICO: NÃO DUPLICAR. Calcula ToString() uma vez só.
             var s = rec?.ToString() ?? "";
             _pendingLogs.Enqueue(UiCompact(s));
 
-            // evita explosão
             if (_pendingLogs.Count > 20000)
                 _pendingLogs.TryDequeue(out _);
 
             ScheduleLogFlush();
         }
-        catch
-        {
-            // nunca quebrar
-        }
+        catch { }
     }
 
     private void ScheduleLogFlush()
@@ -129,22 +131,12 @@ public partial class LogsPage : ContentPage
 
         Dispatcher.StartTimer(TimeSpan.FromMilliseconds(LOG_FLUSH_MS), () =>
         {
-            try
-            {
-                FlushPendingLogs();
-            }
-            finally
-            {
-                _flushScheduled = false;
-            }
+            try { FlushPendingLogs(); }
+            finally { _flushScheduled = false; }
 
-            // Se ainda tem pendente, agenda outro ciclo (igual Xamarin)
             if (!_pendingLogs.IsEmpty && !_logsPaused)
-            {
                 ScheduleLogFlush();
-            }
 
-            // false = roda uma vez (timer one-shot)
             return false;
         });
     }
@@ -161,51 +153,52 @@ public partial class LogsPage : ContentPage
             {
                 while (processed < FLUSH_BATCH && _pendingLogs.TryDequeue(out var line))
                 {
-                    _logItems.Insert(0, line);
+                    _liveItems.Insert(0, line);
                     processed++;
                 }
 
-                // Limita UI (igual Xamarin)
-                while (_logItems.Count > MAX_LOG_ITEMS)
-                    _logItems.RemoveAt(_logItems.Count - 1);
+                while (_liveItems.Count > MAX_LIVE_ITEMS)
+                    _liveItems.RemoveAt(_liveItems.Count - 1);
 
                 if (processed > 0)
-                    InfoLabel.Text = $"Running | +{processed} | Showing {_logItems.Count}";
+                    InfoLabel.Text = $"Running | +{processed} | Live {_liveItems.Count}";
             }
-            catch
-            {
-                // swallow
-            }
+            catch { }
         });
     }
 
-    private async Task ReloadFromDbAsync()
+    private async Task LoadDbSnapshotAsync()
     {
-        var sw = Stopwatch.StartNew();
         try
         {
-            // semelhante ao Xamarin: recentLogs = db.GetRecentLogs(1000);
-            var list = await Task.Run(() => _db.GetRecentLogs(1000));
+            InfoLabel.Text = "Loading DB...";
+
+            var snapshot = await Task.Run(() =>
+            {
+                // conta total para você entender se realmente tem 600 no DB
+                int total = 0;
+                try { total = _db.CountLogs(); } catch { }
+
+                var list = _db.GetRecentLogs(_take);
+
+                var outList = new List<string>(list.Count);
+                foreach (var l in list)
+                    outList.Add($"{l.TimestampUtc.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff} - {l.Message}");
+
+                return (total, outList);
+            });
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                _logItems.Clear();
-                foreach (var l in list)
-                {
-                    // Note: l.Message já pode estar formatado. Mantemos como você está.
-                    _logItems.Add($"{l.TimestampUtc.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff} - {l.Message}");
-                }
+                // aplica em lote: rolável e mais leve
+                LogsList.ItemsSource = snapshot.outList;
+                InfoLabel.Text = $"DB: showing {snapshot.outList.Count} / total {snapshot.total} (take={_take})";
             });
         }
         catch (Exception ex)
         {
-            TransducerLogAndroid.LogException(ex, "ReloadFromDbAsync");
+            TransducerLogAndroid.LogException(ex, "LoadDbSnapshotAsync");
             await DisplayAlert("Erro", "Falha ao carregar logs do DB: " + ex.Message, "OK");
-        }
-        finally
-        {
-            sw.Stop();
-            InfoLabel.Text = $"Loaded {_logItems.Count} from DB in {sw.ElapsedMilliseconds} ms | Paused";
         }
     }
 
@@ -220,7 +213,9 @@ public partial class LogsPage : ContentPage
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                _logItems.Clear();
+                _liveItems.Clear();
+                LogsList.ItemsSource = _liveItems;
+                _showingDbSnapshot = false;
                 InfoLabel.Text = "Logs cleared";
             });
 
@@ -292,9 +287,6 @@ public partial class LogsPage : ContentPage
             else if (action == "Ver completo")
                 await DisplayAlert("Log completo", line, "OK");
         }
-        catch
-        {
-            // ignore
-        }
+        catch { }
     }
 }

@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using SQLite;
-using TransducerAppMaui.Logs;
-using TransducerAppMaui.Helpers;
-
-
-
 
 namespace TransducerAppMaui.Helpers
 {
@@ -16,7 +11,11 @@ namespace TransducerAppMaui.Helpers
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
+        // IMPORTANTE: para performance de "recent logs"
+        // criaremos índice nessa coluna ao abrir o DB
         public DateTime TimestampUtc { get; set; }
+
         public string Message { get; set; }
     }
 
@@ -26,67 +25,58 @@ namespace TransducerAppMaui.Helpers
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        // Timestamp em UTC
         public DateTime TimestampUtc { get; set; }
 
         public decimal Torque { get; set; }
         public decimal Angle { get; set; }
 
-        // Texto legível salvo (linha que aparece na lista da tela)
         public string Text { get; set; }
     }
 
-    // Trace point model
     public class TracePointEntry
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        // corresponde ao ResultEntry.Id
         public int ResultId { get; set; }
-
-        // índice do ponto na curva (ordem)
         public int PointIndex { get; set; }
-
-        // tempo relativo (ms)
         public double TimeMs { get; set; }
-
         public double Torque { get; set; }
-
         public double Angle { get; set; }
     }
 
-    // ===== HELPER DO SQLITE =====
     public class DbHelper : IDisposable
     {
         readonly SQLiteConnection _conn;
         readonly object _locker = new object();
 
-        /// <summary>
-        /// Helper de acesso ao banco SQLite do app.
-        /// </summary>
-        /// <param name="dbFileName">Nome do arquivo de banco. Padrão: transducer.db3</param>
         public DbHelper(string dbFileName = "transducer.db3")
         {
-            // Caminho do db local no app (pasta privada)
             var dbPath = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                 dbFileName);
 
-            // FullMutex para uso thread-safe
             _conn = new SQLiteConnection(
                 dbPath,
                 SQLiteOpenFlags.ReadWrite |
                 SQLiteOpenFlags.Create |
                 SQLiteOpenFlags.FullMutex);
 
-            // Garante criação das tabelas
+            // PRAGMAs seguros (melhoram concorrência e performance)
+            // WAL ajuda MUITO quando há leituras e gravações concorrentes (logger gravando e UI lendo)
+            try { _conn.Execute("PRAGMA journal_mode=WAL;"); } catch { }
+            try { _conn.Execute("PRAGMA synchronous=NORMAL;"); } catch { }
+            try { _conn.Execute("PRAGMA temp_store=MEMORY;"); } catch { }
+            try { _conn.Execute("PRAGMA cache_size=-2000;"); } catch { } // ~2MB cache
+
             _conn.CreateTable<LogEntry>();
             _conn.CreateTable<ResultEntry>();
-            _conn.CreateTable<TracePointEntry>(); // cria tabela de trace points
-        }
+            _conn.CreateTable<TracePointEntry>();
 
-        // ===================== LOGS =====================
+            // ✅ Índices (críticos para "ORDER BY TimestampUtc DESC")
+            try { _conn.Execute("CREATE INDEX IF NOT EXISTS idx_logs_timestamputc ON LogEntry(TimestampUtc);"); } catch { }
+            try { _conn.Execute("CREATE INDEX IF NOT EXISTS idx_logs_id ON LogEntry(Id);"); } catch { }
+        }
 
         public void InsertLog(LogEntry e)
         {
@@ -108,6 +98,15 @@ namespace TransducerAppMaui.Helpers
             }
         }
 
+        // (Opcional) Ajuda para UI mostrar “quantos logs existem”
+        public int CountLogs()
+        {
+            lock (_locker)
+            {
+                return _conn.Table<LogEntry>().Count();
+            }
+        }
+
         public void ClearAllLogs()
         {
             lock (_locker)
@@ -116,15 +115,12 @@ namespace TransducerAppMaui.Helpers
             }
         }
 
-        // =================== RESULTADOS ===================
-
         public void InsertResult(ResultEntry e)
         {
             if (e == null) return;
             lock (_locker)
             {
                 _conn.Insert(e);
-                // sqlite-net preenche e.Id automaticamente após Insert (AutoIncrement)
             }
         }
 
@@ -139,10 +135,6 @@ namespace TransducerAppMaui.Helpers
             }
         }
 
-        /// <summary>
-        /// Retorna TODOS os resultados, em ordem crescente de data.
-        /// Usado para exportação (CSV etc).
-        /// </summary>
         public List<ResultEntry> GetAllResults()
         {
             lock (_locker)
@@ -161,22 +153,17 @@ namespace TransducerAppMaui.Helpers
             }
         }
 
-        // =================== TRACEPOINTS ===================
-
-        // Insere uma lista de pontos associados a um resultId (em uma transação)
         public void InsertTracePoints(int resultId, List<TracePointEntry> points)
         {
             if (points == null || points.Count == 0) return;
 
             lock (_locker)
             {
-                // Uso de RunInTransaction garante atomicidade e é a forma recomendada com sqlite-net
                 _conn.RunInTransaction(() =>
                 {
                     int idx = 0;
                     foreach (var p in points)
                     {
-                        // garante que ResultId e PointIndex estejam corretos
                         p.ResultId = resultId;
                         p.PointIndex = idx++;
                         _conn.Insert(p);
@@ -185,7 +172,6 @@ namespace TransducerAppMaui.Helpers
             }
         }
 
-        // Retorna pontos ordenados por PointIndex para um result
         public List<TracePointEntry> GetTracePointsForResult(int resultId)
         {
             lock (_locker)
@@ -197,7 +183,6 @@ namespace TransducerAppMaui.Helpers
             }
         }
 
-        // Conta pontos (útil para evitar duplicação)
         public int CountTracePointsForResult(int resultId)
         {
             lock (_locker)
@@ -206,8 +191,6 @@ namespace TransducerAppMaui.Helpers
             }
         }
 
-        // ==================== DISPOSE ====================
-
         public void Dispose()
         {
             try
@@ -215,10 +198,7 @@ namespace TransducerAppMaui.Helpers
                 _conn?.Close();
                 _conn?.Dispose();
             }
-            catch
-            {
-                // ignora erros de dispose
-            }
+            catch { }
         }
     }
 }
