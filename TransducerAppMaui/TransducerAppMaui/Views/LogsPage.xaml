@@ -9,20 +9,19 @@
 
         <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="8">
             <Label Text="Logs (SQLite)" FontAttributes="Bold" FontSize="14" TextColor="#212121" />
-            <Button x:Name="RefreshButton" Grid.Column="1" Text="REFRESH" FontSize="10" HeightRequest="36"/>
-            <Button x:Name="ExportButton" Grid.Column="2" Text="EXPORT CSV" FontSize="10" HeightRequest="36"/>
-            <Button x:Name="ClearButton" Grid.Column="3" Text="CLEAR" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="RefreshButton" Grid.Column="1" Text="LOAD" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="LoadMoreButton" Grid.Column="2" Text="LOAD +" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="ClearScreenButton" Grid.Column="3" Text="CLEAR UI" FontSize="10" HeightRequest="36"/>
         </Grid>
 
-        <!-- Aqui deixamos igual ao Xamarin: info + botões de controle -->
-        <Grid ColumnDefinitions="*,Auto,Auto,Auto" ColumnSpacing="8">
+        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
             <Label x:Name="InfoLabel" Text="Ready" FontSize="12" TextColor="#616161" VerticalOptions="Center"/>
-            <Button x:Name="LoadMoreButton" Grid.Column="1" Text="LOAD +" FontSize="10" HeightRequest="36"/>
-            <Button x:Name="PauseButton" Grid.Column="2" Text="PAUSE" FontSize="10" HeightRequest="36"/>
-            <Button x:Name="ResumeButton" Grid.Column="3" Text="RESUME" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="ExportButton" Grid.Column="1" Text="EXPORT CSV" FontSize="10" HeightRequest="36"/>
+            <Button x:Name="ClearButton" Grid.Column="2" Text="CLEAR DB" FontSize="10" HeightRequest="36"/>
         </Grid>
 
         <ListView x:Name="LogsList"
+                  CachingStrategy="RecycleElement"
                   SelectionMode="None"
                   HasUnevenRows="False"
                   RowHeight="22"
@@ -35,6 +34,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        
 
     </VerticalStackLayout>
 </ContentPage>

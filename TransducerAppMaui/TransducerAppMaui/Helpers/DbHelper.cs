@@ -107,6 +107,29 @@ namespace TransducerAppMaui.Helpers
             }
         }
 
+
+        /// <summary>
+        /// Paginação eficiente (Xamarin-like) para logs:
+        /// - Primeiro page: beforeId = null => pega os últimos (Id DESC).
+        /// - Próximo page: beforeId = menor Id já carregado => pega mais antigos.
+        /// </summary>
+        public List<LogEntry> GetLogsBeforeId(int? beforeId, int take)
+        {
+            lock (_locker)
+            {
+                var q = _conn.Table<LogEntry>();
+
+                if (beforeId.HasValue)
+                    q = q.Where(x => x.Id < beforeId.Value);
+
+                return q.OrderByDescending(x => x.Id)
+                        .Take(take)
+                        .ToList();
+            }
+        }
+
+
+
         public void ClearAllLogs()
         {
             lock (_locker)

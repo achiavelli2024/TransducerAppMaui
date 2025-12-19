@@ -62,6 +62,11 @@ namespace TransducerAppMaui.Logs
         static int _flushIntervalMs = 400;   // flush timer
         static int _flushBatchSize = 100;    // max itens por batch
 
+        // Proteção para não explodir memória caso logging fique ligado em flood
+        const int MAX_QUEUE_ITEMS = 20000;
+
+
+
         // initialized flag
         static bool _initialized = false;
 
@@ -162,6 +167,10 @@ namespace TransducerAppMaui.Logs
         {
             try
             {
+                // ✅ NOVO: logging liga/desliga (retorno imediato, baratíssimo)
+                if (!LoggingSettings.Enabled)
+                    return;
+
                 var rec = new LogRecord
                 {
                     TimestampUtc = DateTime.UtcNow,
@@ -170,19 +179,21 @@ namespace TransducerAppMaui.Logs
                     Message = message,
                     RawHex = rawHex
                 };
+
                 _queue.Enqueue(rec);
 
-                // notify UI immediately (non-blocking). MainActivity must handle UI threading.
+                // proteção contra flood
+                while (_queue.Count > MAX_QUEUE_ITEMS && _queue.TryDequeue(out _)) { }
+
+                // UI listeners (se existir algum)
                 try { OnLogAppended?.Invoke(rec); } catch { }
 
-                // If queue grows too large, signal immediate short flush by kicking flusher thread via Task
-                if (_queue.Count > 2000)
-                {
-                    Task.Run(() => FlushOneBatchAsync().ConfigureAwait(false));
-                }
+                // ✅ CRÍTICO: removido Task.Run storm.
+                // O FlusherLoopAsync já persiste periodicamente.
             }
             catch { /* never throw from logger */ }
         }
+
 
         // Flusher loop: persiste periodicamente em batches na DB
         static async Task FlusherLoopAsync(CancellationToken token)
