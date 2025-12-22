@@ -2,6 +2,7 @@
 using System.Globalization;
 using TransducerAppMaui.Drivers;
 using TransducerAppMaui.Models;
+using TransducerAppMaui.Resources.Strings;
 using TransducerAppMaui.Services;
 using TransducerAppMaui.Services.Logging;
 
@@ -73,6 +74,10 @@ public partial class FreeTestPage : ContentPage
         if (!_subscribed)
         {
             _transducerService.ConnectionChanged += OnConnectionChanged;
+
+            ReconnectCountLabel.Text = string.Format(AppResources.FreeTest_Label_Reconnection, 0);
+            UptimeLabel.Text = string.Format(AppResources.FreeTest_Label_Uptime, "00:00:00");
+
             _transducerService.LiveDataReceived += OnLiveDataReceived;
             _transducerService.ErrorRaised += OnErrorRaised;
             _subscribed = true;
@@ -187,7 +192,7 @@ public partial class FreeTestPage : ContentPage
         {
             if (!_transducerService.IsConnected)
             {
-                await DisplayAlert("Aviso", "Conecte ao transdutor antes.", "OK");
+                await DisplayAlert(AppResources.FreeTest_Alert_WarningTitle, AppResources.FreeTest_Warn_ConnectBefore, AppResources.Dialog_Ok);
                 return;
             }
 
@@ -197,26 +202,32 @@ public partial class FreeTestPage : ContentPage
 
             // 2) Confirmação (igual Xamarin)
             var ok = await DisplayAlert(
-                "Confirmar parâmetros",
+                AppResources.FreeTest_Confirm_Params_Title,
                 BuildConfirmationText(p),
-                "Prosseguir",
-                "Cancelar");
+                AppResources.FreeTest_Confirm_Params_Proceed,
+                AppResources.FreeTest_Confirm_Params_Cancel);
 
             if (!ok) return;
 
             // Travar UI básica para evitar mudanças no meio
             SetParameterInputsEnabled(false);
 
-            StatusLabel.Text = "Status: Starting acquisition...";
+            //StatusLabel.Text = "Status: Starting acquisition...";
+            StatusLabel.Text = AppResources.FreeTest_Status_StartingAcq;
+
             await _transducerService.StartAcquisitionAsync(firstStart: true);
 
-            StatusLabel.Text = "Status: Acquisition started";
+            //StatusLabel.Text = "Status: Acquisition started";
+            StatusLabel.Text = AppResources.FreeTest_Status_AcqStarted;
+
             UpdateAcquisitionUiState();
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Erro", "Falha no InitRead: " + ex.Message, "OK");
-            StatusLabel.Text = "Status: Error";
+            await DisplayAlert(AppResources.FreeTest_Alert_ErrorTitle, string.Format(AppResources.FreeTest_Error_InitRead, ex.Message), AppResources.Dialog_Ok);
+            //StatusLabel.Text = "Status: Error";
+            StatusLabel.Text = AppResources.FreeTest_Status_ErrorGeneric;
+
 
             // Em caso de erro, libera inputs
             SetParameterInputsEnabled(true);
@@ -229,7 +240,9 @@ public partial class FreeTestPage : ContentPage
         try
         {
             await _transducerService.StopAcquisitionAsync();
-            StatusLabel.Text = "Status: Stopped";
+            //StatusLabel.Text = "Status: Stopped";
+            StatusLabel.Text = AppResources.FreeTest_Status_Stopped;
+
 
             // Libera inputs ao parar
             SetParameterInputsEnabled(true);
@@ -237,7 +250,7 @@ public partial class FreeTestPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Erro", "Falha ao parar: " + ex.Message, "OK");
+            await DisplayAlert(AppResources.FreeTest_Alert_ErrorTitle, string.Format(AppResources.FreeTest_Error_Stop, ex.Message), AppResources.Dialog_Ok);
         }
     }
 
@@ -245,8 +258,14 @@ public partial class FreeTestPage : ContentPage
     {
         try
         {
-            StatusLabel.Text = "Status: Connecting";
-            ConnectionStatusLabel.Text = "Connecting";
+            //StatusLabel.Text = "Status: Connecting";
+           //ConnectionStatusLabel.Text = "Connecting";
+
+            StatusLabel.Text = AppResources.FreeTest_Status_Connecting;
+            ConnectionStatusLabel.Text = AppResources.FreeTest_Conn_Connecting;
+
+
+
             ConnectionIndicator.TextColor = Color.FromArgb("#FF9800"); // laranja
 
             ConnectButton.IsEnabled = false;
@@ -258,12 +277,17 @@ public partial class FreeTestPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Erro", "Falha ao conectar: " + ex.Message, "OK");
+            await DisplayAlert(AppResources.FreeTest_Alert_ErrorTitle, string.Format(AppResources.FreeTest_Error_Connect, ex.Message), AppResources.Dialog_Ok);
             ConnectButton.IsEnabled = true;
 
-            ConnectionStatusLabel.Text = "Disconnected";
+            //ConnectionStatusLabel.Text = "Disconnected";
+            //ConnectionIndicator.TextColor = Color.FromArgb("#F44336");
+            //StatusLabel.Text = "Status: Disconnected";
+            ConnectionStatusLabel.Text = AppResources.FreeTest_Conn_Disconnected;
+            StatusLabel.Text = AppResources.FreeTest_Status_Disconnected;
             ConnectionIndicator.TextColor = Color.FromArgb("#F44336");
-            StatusLabel.Text = "Status: Disconnected";
+
+
         }
     }
 
@@ -279,7 +303,7 @@ public partial class FreeTestPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Erro", "Falha ao desconectar: " + ex.Message, "OK");
+            await DisplayAlert(AppResources.FreeTest_Alert_ErrorTitle, string.Format(AppResources.FreeTest_Error_Disconnect, ex.Message), AppResources.Dialog_Ok);
         }
     }
 
@@ -292,8 +316,13 @@ public partial class FreeTestPage : ContentPage
             if (connected)
             {
                 ConnectionIndicator.TextColor = Color.FromArgb("#4CAF50");
-                ConnectionStatusLabel.Text = "Connected";
-                StatusLabel.Text = "Status: Connected";
+                //ConnectionStatusLabel.Text = "Connected";
+                //StatusLabel.Text = "Status: Connected";
+
+                ConnectionStatusLabel.Text = AppResources.FreeTest_Conn_Connected;
+                StatusLabel.Text = AppResources.FreeTest_Status_Connected;
+
+
 
                 ConnectButton.IsVisible = false;
                 DisconnectButton.IsVisible = true;
@@ -301,8 +330,12 @@ public partial class FreeTestPage : ContentPage
             else
             {
                 ConnectionIndicator.TextColor = Color.FromArgb("#F44336");
-                ConnectionStatusLabel.Text = "Disconnected";
-                StatusLabel.Text = "Status: Disconnected";
+
+                //ConnectionStatusLabel.Text = "Disconnected";
+                //StatusLabel.Text = "Status: Disconnected";
+                ConnectionStatusLabel.Text = AppResources.FreeTest_Conn_Disconnected;
+                StatusLabel.Text = AppResources.FreeTest_Status_Disconnected;
+
 
                 ConnectButton.IsVisible = true;
                 DisconnectButton.IsVisible = false;
@@ -327,7 +360,9 @@ public partial class FreeTestPage : ContentPage
     {
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            StatusLabel.Text = $"Status: Error ER{err:00}";
+            //StatusLabel.Text = $"Status: Error ER{err:00}";
+            StatusLabel.Text = string.Format(AppResources.FreeTest_Status_ErrorCode, err);
+
         });
     }
 

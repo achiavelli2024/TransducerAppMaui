@@ -227,7 +227,7 @@
   <data name="Logs_Button_LoadMore" xml:space="preserve">
     <value>LOAD +</value>
   </data>
-  <data name="ClearScreenButton" xml:space="preserve">
+  <data name="Logs_Button_ClearUi" xml:space="preserve">
     <value>CLEAR UI</value>
   </data>
   <data name="Logs_Button_ExportCsv" xml:space="preserve">
@@ -293,4 +293,96 @@
   <data name="Common_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+
+
+  <!-- FreeTest / Transducer (UI - XAML) -->
+  <data name="FreeTest_Title" xml:space="preserve"><value>Transducer</value></data>
+
+  <data name="FreeTest_Section_Connection" xml:space="preserve"><value>Connection</value></data>
+  <data name="FreeTest_Label_Ip" xml:space="preserve"><value>IP:</value></data>
+  <data name="FreeTest_Placeholder_Ip" xml:space="preserve"><value>192.168.4.1</value></data>
+  <data name="FreeTest_Button_Connect" xml:space="preserve"><value>Connect</value></data>
+  <data name="FreeTest_Button_Disconnect" xml:space="preserve"><value>Disconnect</value></data>
+  <data name="FreeTest_Status_Disconnected" xml:space="preserve"><value>Disconnected</value></data>
+  <data name="FreeTest_Label_ShowTrace" xml:space="preserve"><value>Show trace</value></data>
+  <data name="FreeTest_Label_ShowStats" xml:space="preserve"><value>Show stats</value></data>
+  <data name="FreeTest_Label_Reconnection" xml:space="preserve"><value>Reconnection: {0}</value></data>
+  <data name="FreeTest_Label_Uptime" xml:space="preserve"><value>Uptime: {0}</value></data>
+
+  <data name="FreeTest_Section_LiveValues" xml:space="preserve"><value>Live values</value></data>
+  <data name="FreeTest_Label_Torque" xml:space="preserve"><value>Torque</value></data>
+  <data name="FreeTest_Label_Angle" xml:space="preserve"><value>Angle</value></data>
+  <data name="FreeTest_Label_Results" xml:space="preserve"><value>Results</value></data>
+
+  <data name="FreeTest_Section_Parameters" xml:space="preserve"><value>Parameters</value></data>
+  <data name="FreeTest_Label_Threshold" xml:space="preserve"><value>Threshold:</value></data>
+  <data name="FreeTest_Label_Timeout" xml:space="preserve"><value>Timeout:</value></data>
+  <data name="FreeTest_Label_Frequency" xml:space="preserve"><value>Frequency:</value></data>
+  <data name="FreeTest_Label_Min" xml:space="preserve"><value>Min:</value></data>
+  <data name="FreeTest_Label_Nom" xml:space="preserve"><value>Nom:</value></data>
+  <data name="FreeTest_Label_Max" xml:space="preserve"><value>Max:</value></data>
+  <data name="FreeTest_Label_Tool" xml:space="preserve"><value>Tool:</value></data>
+  <data name="FreeTest_Picker_ToolType_Title" xml:space="preserve"><value>Select tool type</value></data>
+
+  <data name="FreeTest_Status_Idle" xml:space="preserve"><value>Status: Idle</value></data>
+  <data name="FreeTest_Stats_Mean" xml:space="preserve"><value>Mean: n/a</value></data>
+  <data name="FreeTest_Stats_Cm" xml:space="preserve"><value>Cm: n/a</value></data>
+  <data name="FreeTest_Stats_Cmk" xml:space="preserve"><value>Cmk: n/a</value></data>
+
+  <data name="FreeTest_Section_ResultsHistory" xml:space="preserve"><value>Results history</value></data>
+  <data name="FreeTest_Button_ExportResults" xml:space="preserve"><value>EXPORT RESULTS</value></data>
+  <data name="FreeTest_Button_ClearResults" xml:space="preserve"><value>Clean Results</value></data>
+
+  <data name="FreeTest_Button_InitRead" xml:space="preserve"><value>Init Read</value></data>
+  <data name="FreeTest_Button_Stop" xml:space="preserve"><value>Stop</value></data>
+  <data name="FreeTest_Button_Zero" xml:space="preserve"><value>Zero Tq An</value></data>
+
+  <data name="FreeTest_Button_ClearLog" xml:space="preserve"><value>Clear Log</value></data>
+  <data name="FreeTest_Button_CopyLog" xml:space="preserve"><value>Copy Log</value></data>
+  <data name="FreeTest_Label_ShowLogs" xml:space="preserve"><value>Show Logs</value></data>
+  <data name="FreeTest_Label_PauseLogs" xml:space="preserve"><value>Pause Logs</value></data>
+  <data name="FreeTest_Button_ExportLogs" xml:space="preserve"><value>EXPORT LOGS</value></data>
+  <data name="FreeTest_Section_Logs" xml:space="preserve"><value>Logs</value></data>
+
+
+
+
+  <!-- FreeTest (Code-behind) - Alerts/Confirm -->
+  <data name="FreeTest_Alert_WarningTitle" xml:space="preserve"><value>Warning</value></data>
+  <data name="FreeTest_Alert_ErrorTitle" xml:space="preserve"><value>Error</value></data>
+
+  <data name="FreeTest_Warn_ConnectBefore" xml:space="preserve"><value>Connect to the transducer first.</value></data>
+
+  <data name="FreeTest_Confirm_Params_Title" xml:space="preserve"><value>Confirm parameters</value></data>
+  <data name="FreeTest_Confirm_Params_Proceed" xml:space="preserve"><value>Proceed</value></data>
+  <data name="FreeTest_Confirm_Params_Cancel" xml:space="preserve"><value>Cancel</value></data>
+
+  <data name="FreeTest_Error_InitRead" xml:space="preserve"><value>InitRead failed: {0}</value></data>
+  <data name="FreeTest_Error_Stop" xml:space="preserve"><value>Failed to stop: {0}</value></data>
+  <data name="FreeTest_Error_Connect" xml:space="preserve"><value>Failed to connect: {0}</value></data>
+  <data name="FreeTest_Error_Disconnect" xml:space="preserve"><value>Failed to disconnect: {0}</value></data>
+
+  <!-- FreeTest (Code-behind) - Status/Connection -->
+  <data name="FreeTest_Conn_Connecting" xml:space="preserve"><value>Connecting</value></data>
+  <data name="FreeTest_Conn_Connected" xml:space="preserve"><value>Connected</value></data>
+  <data name="FreeTest_Conn_Disconnected" xml:space="preserve"><value>Disconnected</value></data>
+
+  <data name="FreeTest_Status_Connecting" xml:space="preserve"><value>Status: Connecting</value></data>
+  <data name="FreeTest_Status_Connected" xml:space="preserve"><value>Status: Connected</value></data>
+  <data name="FreeTest_Status_Disconnected" xml:space="preserve"><value>Status: Disconnected</value></data>
+
+  <data name="FreeTest_Status_StartingAcq" xml:space="preserve"><value>Status: Starting acquisition...</value></data>
+  <data name="FreeTest_Status_AcqStarted" xml:space="preserve"><value>Status: Acquisition started</value></data>
+  <data name="FreeTest_Status_Stopped" xml:space="preserve"><value>Status: Stopped</value></data>
+
+  <!-- err code placeholder: ER{0:00} -->
+  <data name="FreeTest_Status_ErrorCode" xml:space="preserve"><value>Status: Error ER{0:00}</value></data>
+  <data name="FreeTest_Status_ErrorGeneric" xml:space="preserve"><value>Status: Error</value></data>
+  
+  
+  
+  
+  
+  
+  
 </root>
