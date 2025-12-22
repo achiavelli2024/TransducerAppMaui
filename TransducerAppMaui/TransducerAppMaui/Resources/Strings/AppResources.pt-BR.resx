@@ -189,7 +189,7 @@
 
   <data name="Logs_Button_Load" xml:space="preserve"><value>CARREGAR</value></data>
   <data name="Logs_Button_LoadMore" xml:space="preserve"><value>+ MAIS</value></data>
-  <data name="Logs_Button_ClearUi" xml:space="preserve"><value>LIMPAR TELA</value></data>
+  <data name="ClearScreenButton" xml:space="preserve"><value>LIMPAR TELA</value></data>
   <data name="Logs_Button_ExportCsv" xml:space="preserve"><value>EXPORTAR CSV</value></data>
   <data name="Logs_Button_ClearDb" xml:space="preserve"><value>LIMPAR DB</value></data>
 

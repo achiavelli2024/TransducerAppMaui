@@ -219,10 +219,15 @@
   <data name="Logs_Button_Load" xml:space="preserve">
     <value>LOAD</value>
   </data>
+
+
+  
+  
+  
   <data name="Logs_Button_LoadMore" xml:space="preserve">
     <value>LOAD +</value>
   </data>
-  <data name="Logs_Button_ClearUi" xml:space="preserve">
+  <data name="ClearScreenButton" xml:space="preserve">
     <value>CLEAR UI</value>
   </data>
   <data name="Logs_Button_ExportCsv" xml:space="preserve">
