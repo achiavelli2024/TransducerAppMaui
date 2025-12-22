@@ -16,6 +16,10 @@ public partial class App : Application
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
+        // ✅ Aplica idioma no início (auto/system com opção de override)
+        LocalizationService.ApplyCultureFromSettings();
+
+
         var window = new Window(new AppShell());
 
         window.Created += async (_, __) =>
