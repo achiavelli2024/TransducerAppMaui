@@ -12,10 +12,8 @@ namespace TransducerAppMaui.Views
         {
             InitializeComponent();
 
-            // Logging toggle
             LoggingEnabledSwitch.Toggled += LoggingEnabledSwitch_Toggled;
 
-            // Language picker (textos vêm do resx)
             LanguagePicker.Items.Clear();
             LanguagePicker.Items.Add(AppResources.Settings_Language_Auto);
             LanguagePicker.Items.Add(AppResources.Settings_Language_English);
@@ -28,7 +26,6 @@ namespace TransducerAppMaui.Views
         {
             base.OnAppearing();
 
-            // ===== Logging =====
             var enabled = LoggingSettings.Enabled;
 
             LoggingEnabledSwitch.Toggled -= LoggingEnabledSwitch_Toggled;
@@ -37,7 +34,6 @@ namespace TransducerAppMaui.Views
 
             UpdateStatusLabel(enabled);
 
-            // ===== Language =====
             _loadingLanguage = true;
             try
             {
@@ -58,8 +54,6 @@ namespace TransducerAppMaui.Views
             }
         }
 
-        // ---------------- Logging ----------------
-
         private void LoggingEnabledSwitch_Toggled(object sender, ToggledEventArgs e)
         {
             LoggingSettings.Enabled = e.Value;
@@ -74,8 +68,6 @@ namespace TransducerAppMaui.Views
                 ? AppResources.Settings_LogStatus_On
                 : AppResources.Settings_LogStatus_Off;
         }
-
-        // ---------------- Language ----------------
 
         private async void LanguagePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -103,8 +95,12 @@ namespace TransducerAppMaui.Views
 
                 await DisplayAlert(AppResources.Dialog_Info, AppResources.Dialog_LanguageApplied, AppResources.Dialog_Ok);
 
-                if (Application.Current != null)
-                    Application.Current.MainPage = new AppShell();
+                // ✅ refresh garantido no thread da UI
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    if (Application.Current != null)
+                        Application.Current.MainPage = new AppShell();
+                });
             }
             catch (Exception ex)
             {

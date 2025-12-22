@@ -135,7 +135,6 @@
   <data name="Settings_TipLogging" xml:space="preserve">
     <value>Tip: Keep this OFF for best performance. Turn ON only when you need to record RX/TX logs and export them.</value>
   </data>
-
   <data name="Settings_Language_Title" xml:space="preserve">
     <value>Language</value>
   </data>
@@ -151,7 +150,6 @@
   <data name="Settings_Language_Portuguese" xml:space="preserve">
     <value>Português (Brasil)</value>
   </data>
-
   <data name="Settings_Language_Current_Auto" xml:space="preserve">
     <value>Current: Auto (system)</value>
   </data>
@@ -161,11 +159,9 @@
   <data name="Settings_Language_Current_Portuguese" xml:space="preserve">
     <value>Current: Português (Brasil)</value>
   </data>
-
   <data name="Settings_Language_Note" xml:space="preserve">
     <value>Note: Changing language will refresh the app UI.</value>
   </data>
-
   <data name="Dialog_Info" xml:space="preserve">
     <value>Info</value>
   </data>
@@ -180,5 +176,116 @@
   </data>
   <data name="Dialog_LanguageFailed" xml:space="preserve">
     <value>Failed to apply language: {0}</value>
+  </data>
+  <data name="Nav_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Nav_Logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="Nav_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Home_Welcome_Title" xml:space="preserve">
+    <value>Welcome!</value>
+  </data>
+  <data name="Home_Subtitle" xml:space="preserve">
+    <value>App Connect to Transducer Phoenix</value>
+  </data>
+  <data name="Home_Button_FreeTest" xml:space="preserve">
+    <value>Free Test</value>
+  </data>
+  <data name="Home_Button_Logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="Home_Button_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Home_Hint_FreeTest" xml:space="preserve">
+    <value>Open Free Test page</value>
+  </data>
+  <data name="Home_Hint_Logs" xml:space="preserve">
+    <value>Open Logs page</value>
+  </data>
+  <data name="Home_Hint_Settings" xml:space="preserve">
+    <value>Open Settings page</value>
+  </data>
+  <data name="Logs_Title" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="Logs_Header" xml:space="preserve">
+    <value>Logs (SQLite)</value>
+  </data>
+  <data name="Logs_Button_Load" xml:space="preserve">
+    <value>LOAD</value>
+  </data>
+  <data name="Logs_Button_LoadMore" xml:space="preserve">
+    <value>LOAD +</value>
+  </data>
+  <data name="Logs_Button_ClearUi" xml:space="preserve">
+    <value>CLEAR UI</value>
+  </data>
+  <data name="Logs_Button_ExportCsv" xml:space="preserve">
+    <value>EXPORT CSV</value>
+  </data>
+  <data name="Logs_Button_ClearDb" xml:space="preserve">
+    <value>CLEAR DB</value>
+  </data>
+  <data name="Logs_Info_Ready" xml:space="preserve">
+    <value>Ready (press LOAD)</value>
+  </data>
+  <data name="Logs_Info_Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="Logs_Info_UiCleared" xml:space="preserve">
+    <value>UI cleared (DB unchanged)</value>
+  </data>
+  <data name="Logs_Info_DbCleared" xml:space="preserve">
+    <value>DB cleared</value>
+  </data>
+  <data name="Logs_Info_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Logs_Info_LoadedFormat" xml:space="preserve">
+    <value>Loaded +{0} | Showing {1} | Total {2}</value>
+  </data>
+  <data name="Logs_Confirm_Title" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Logs_Confirm_ClearDb" xml:space="preserve">
+    <value>Delete all logs from the database?</value>
+  </data>
+  <data name="Common_Yes" xml:space="preserve">
+    <value>YES</value>
+  </data>
+  <data name="Common_No" xml:space="preserve">
+    <value>NO</value>
+  </data>
+  <data name="Logs_Error_Load" xml:space="preserve">
+    <value>Failed to load logs: {0}</value>
+  </data>
+  <data name="Logs_Error_Clear" xml:space="preserve">
+    <value>Failed to clear logs: {0}</value>
+  </data>
+  <data name="Logs_Error_Export" xml:space="preserve">
+    <value>Failed to export logs: {0}</value>
+  </data>
+  <data name="Logs_Item_ActionSheetTitle" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="Common_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Logs_Item_ViewFull" xml:space="preserve">
+    <value>View full</value>
+  </data>
+  <data name="Logs_Item_FullTitle" xml:space="preserve">
+    <value>Full log</value>
+  </data>
+  <data name="Logs_Share_Title" xml:space="preserve">
+    <value>Export Logs (CSV)</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
 </root>

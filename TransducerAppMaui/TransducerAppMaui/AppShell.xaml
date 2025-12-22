@@ -4,11 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TransducerAppMaui"
+    xmlns:res="clr-namespace:TransducerAppMaui.Resources.Strings"
     Shell.FlyoutBehavior="Flyout"
     Title="TransducerAppMaui">
 
     <ShellContent
-        Title="Home"
+        Title="{x:Static res:AppResources.Nav_Home}"
         ContentTemplate="{DataTemplate local:MainHomePage}"
         Route="MainHomePage" />
 

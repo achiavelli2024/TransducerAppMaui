@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Text;
 using TransducerAppMaui.Helpers;
 using TransducerAppMaui.Logs;
+using TransducerAppMaui.Resources.Strings;
 
 namespace TransducerAppMaui.Views;
 
@@ -24,7 +25,6 @@ public partial class LogsPage : ContentPage
 
         LogsList.ItemsSource = _items;
 
-        // LOAD (do zero)
         RefreshButton.Clicked += async (_, __) =>
         {
             _beforeId = null;
@@ -32,51 +32,42 @@ public partial class LogsPage : ContentPage
             await LoadNextPageAsync();
         };
 
-        // LOAD +
         LoadMoreButton.Clicked += async (_, __) => await LoadNextPageAsync();
 
-        // CLEAR UI
         ClearScreenButton.Clicked += (_, __) =>
         {
             _items.Clear();
             _beforeId = null;
-            InfoLabel.Text = "UI cleared (DB unchanged)";
+            InfoLabel.Text = AppResources.Logs_Info_UiCleared;
         };
 
-        // CLEAR DB
         ClearButton.Clicked += async (_, __) => await ClearDbAsync();
-
-        // EXPORT CSV (tudo do DB)
         ExportButton.Clicked += async (_, __) => await ExportCsvAndShareAsync();
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        // não auto-carrega. Você pediu botão para carregar.
-        InfoLabel.Text = "Ready (press LOAD)";
+        InfoLabel.Text = AppResources.Logs_Info_Ready;
     }
 
     private async Task LoadNextPageAsync()
     {
         try
         {
-            InfoLabel.Text = "Loading...";
+            InfoLabel.Text = AppResources.Logs_Info_Loading;
 
             var page = await Task.Run(() =>
             {
                 var list = _db.GetLogsBeforeId(_beforeId, PAGE_SIZE);
 
-                // atualiza cursor
                 int? nextBefore = _beforeId;
                 if (list.Count > 0)
                     nextBefore = list.Min(x => x.Id);
 
                 var lines = new List<string>(list.Count);
                 foreach (var l in list)
-                {
                     lines.Add($"{l.TimestampUtc.ToLocalTime():yyyy-MM-dd HH:mm:ss.fff} - {l.Message}");
-                }
 
                 int total = 0;
                 try { total = _db.CountLogs(); } catch { }
@@ -91,14 +82,18 @@ public partial class LogsPage : ContentPage
 
                 _beforeId = page.nextBefore;
 
-                InfoLabel.Text = $"Loaded +{page.lines.Count} | Showing {_items.Count} | Total {page.total}";
+                InfoLabel.Text = string.Format(
+                    AppResources.Logs_Info_LoadedFormat,
+                    page.lines.Count,
+                    _items.Count,
+                    page.total);
             });
         }
         catch (Exception ex)
         {
             TransducerLogAndroid.LogException(ex, "LogsPage LoadNextPageAsync");
-            await DisplayAlert("Erro", "Falha ao carregar logs: " + ex.Message, "OK");
-            InfoLabel.Text = "Error";
+            await DisplayAlert(AppResources.Dialog_Error, string.Format(AppResources.Logs_Error_Load, ex.Message), AppResources.Dialog_Ok);
+            InfoLabel.Text = AppResources.Logs_Info_Error;
         }
     }
 
@@ -106,7 +101,12 @@ public partial class LogsPage : ContentPage
     {
         try
         {
-            var ok = await DisplayAlert("Confirmar", "Apagar todos os logs do banco?", "SIM", "NÃO");
+            var ok = await DisplayAlert(
+                AppResources.Logs_Confirm_Title,
+                AppResources.Logs_Confirm_ClearDb,
+                AppResources.Common_Yes,
+                AppResources.Common_No);
+
             if (!ok) return;
 
             await Task.Run(() => _db.ClearAllLogs());
@@ -115,7 +115,7 @@ public partial class LogsPage : ContentPage
             {
                 _items.Clear();
                 _beforeId = null;
-                InfoLabel.Text = "DB cleared";
+                InfoLabel.Text = AppResources.Logs_Info_DbCleared;
             });
 
             TransducerLogAndroid.LogInfo("Logs DB cleared by user.");
@@ -123,7 +123,7 @@ public partial class LogsPage : ContentPage
         catch (Exception ex)
         {
             TransducerLogAndroid.LogException(ex, "LogsPage ClearDbAsync");
-            await DisplayAlert("Erro", "Falha ao limpar logs: " + ex.Message, "OK");
+            await DisplayAlert(AppResources.Dialog_Error, string.Format(AppResources.Logs_Error_Clear, ex.Message), AppResources.Dialog_Ok);
         }
     }
 
@@ -133,7 +133,7 @@ public partial class LogsPage : ContentPage
         {
             TransducerLogAndroid.LogInfo("Exporting logs to CSV...");
 
-            var logs = await Task.Run(() => _db.GetRecentLogs(100000)); // se quiser exportar TUDO MESMO, podemos criar GetAllLogs()
+            var logs = await Task.Run(() => _db.GetRecentLogs(100000));
             var csv = BuildCsv(logs);
 
             var folder = Path.Combine(FileSystem.AppDataDirectory, "Exports");
@@ -146,14 +146,14 @@ public partial class LogsPage : ContentPage
 
             await Share.RequestAsync(new ShareFileRequest
             {
-                Title = "Export Logs (CSV)",
+                Title = AppResources.Logs_Share_Title,
                 File = new ShareFile(fullPath)
             });
         }
         catch (Exception ex)
         {
             TransducerLogAndroid.LogException(ex, "LogsPage ExportCsvAndShareAsync");
-            await DisplayAlert("Erro", "Falha ao exportar logs: " + ex.Message, "OK");
+            await DisplayAlert(AppResources.Dialog_Error, string.Format(AppResources.Logs_Error_Export, ex.Message), AppResources.Dialog_Ok);
         }
     }
 
@@ -179,11 +179,17 @@ public partial class LogsPage : ContentPage
             if (e.Item is not string line) return;
             LogsList.SelectedItem = null;
 
-            var action = await DisplayActionSheet("Log", "Cancelar", null, "Copiar", "Ver completo");
-            if (action == "Copiar")
+            var action = await DisplayActionSheet(
+                AppResources.Logs_Item_ActionSheetTitle,
+                AppResources.Common_Cancel,
+                null,
+                AppResources.Common_Copy,
+                AppResources.Logs_Item_ViewFull);
+
+            if (action == AppResources.Common_Copy)
                 await Clipboard.Default.SetTextAsync(line);
-            else if (action == "Ver completo")
-                await DisplayAlert("Log completo", line, "OK");
+            else if (action == AppResources.Logs_Item_ViewFull)
+                await DisplayAlert(AppResources.Logs_Item_FullTitle, line, AppResources.Dialog_Ok);
         }
         catch { }
     }
