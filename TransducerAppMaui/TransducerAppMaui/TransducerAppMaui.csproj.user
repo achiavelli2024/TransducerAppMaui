@@ -3,7 +3,7 @@
   <PropertyGroup>
     <IsFirstTimeProjectOpen>False</IsFirstTimeProjectOpen>
     <ActiveDebugFramework>net9.0-android</ActiveDebugFramework>
-    <ActiveDebugProfile>Nexus 6P - API 35 (Android 15.0 - API 35)</ActiveDebugProfile>
+    <ActiveDebugProfile>Xiaomi 22031116BG (Android 13.0 - API 33)</ActiveDebugProfile>
     <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
     <DefaultDevice>nexus_6p_-_api_35</DefaultDevice>
     <SelectedDevice>Samsung SM-T805</SelectedDevice>
@@ -11,6 +11,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-android|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Strings\AppResources.pt-BR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Strings\AppResources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <MauiXaml Update="MainHomePage.xaml">
       <SubType>Designer</SubType>

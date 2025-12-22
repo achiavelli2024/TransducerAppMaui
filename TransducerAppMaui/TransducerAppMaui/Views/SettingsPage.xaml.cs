@@ -1,5 +1,6 @@
 ﻿using TransducerAppMaui.Helpers;
 using TransducerAppMaui.Logs;
+using TransducerAppMaui.Resources.Strings;
 
 namespace TransducerAppMaui.Views
 {
@@ -14,11 +15,11 @@ namespace TransducerAppMaui.Views
             // Logging toggle
             LoggingEnabledSwitch.Toggled += LoggingEnabledSwitch_Toggled;
 
-            // Language picker
+            // Language picker (textos vêm do resx)
             LanguagePicker.Items.Clear();
-            LanguagePicker.Items.Add("Auto (system)");
-            LanguagePicker.Items.Add("English");
-            LanguagePicker.Items.Add("Português (Brasil)");
+            LanguagePicker.Items.Add(AppResources.Settings_Language_Auto);
+            LanguagePicker.Items.Add(AppResources.Settings_Language_English);
+            LanguagePicker.Items.Add(AppResources.Settings_Language_Portuguese);
 
             LanguagePicker.SelectedIndexChanged += LanguagePicker_SelectedIndexChanged;
         }
@@ -62,21 +63,16 @@ namespace TransducerAppMaui.Views
         private void LoggingEnabledSwitch_Toggled(object sender, ToggledEventArgs e)
         {
             LoggingSettings.Enabled = e.Value;
-
             UpdateStatusLabel(e.Value);
 
-            try
-            {
-                TransducerLogAndroid.LogInfo("Settings: LoggingEnabled set to {0}", e.Value);
-            }
-            catch { }
+            try { TransducerLogAndroid.LogInfo("Settings: LoggingEnabled set to {0}", e.Value); } catch { }
         }
 
         private void UpdateStatusLabel(bool enabled)
         {
             LoggingStatusLabel.Text = enabled
-                ? "Status: ON (saving logs to DB)"
-                : "Status: OFF (no logs saved)";
+                ? AppResources.Settings_LogStatus_On
+                : AppResources.Settings_LogStatus_Off;
         }
 
         // ---------------- Language ----------------
@@ -103,14 +99,9 @@ namespace TransducerAppMaui.Views
                 LocalizationService.ApplyCultureFromSettings();
                 UpdateLanguageStatusLabel();
 
-                try
-                {
-                    TransducerLogAndroid.LogInfo("Settings: Language set to {0}", LanguageSettings.Selected);
-                }
-                catch { }
+                try { TransducerLogAndroid.LogInfo("Settings: Language set to {0}", LanguageSettings.Selected); } catch { }
 
-                // Recriar UI (mais confiável que tentar "atualizar binding" de tudo)
-                await DisplayAlert("Info", "Language applied. The app UI will refresh now.", "OK");
+                await DisplayAlert(AppResources.Dialog_Info, AppResources.Dialog_LanguageApplied, AppResources.Dialog_Ok);
 
                 if (Application.Current != null)
                     Application.Current.MainPage = new AppShell();
@@ -118,19 +109,20 @@ namespace TransducerAppMaui.Views
             catch (Exception ex)
             {
                 try { TransducerLogAndroid.LogException(ex, "LanguagePicker_SelectedIndexChanged"); } catch { }
-                await DisplayAlert("Error", "Failed to apply language: " + ex.Message, "OK");
+
+                var msg = string.Format(AppResources.Dialog_LanguageFailed, ex.Message);
+                await DisplayAlert(AppResources.Dialog_Error, msg, AppResources.Dialog_Ok);
             }
         }
 
         private void UpdateLanguageStatusLabel()
         {
             var selected = (LanguageSettings.Selected ?? LanguageSettings.Auto).Trim();
-            string text =
-                selected.Equals(LanguageSettings.English, StringComparison.OrdinalIgnoreCase) ? "Current: English" :
-                selected.Equals(LanguageSettings.PortugueseBrazil, StringComparison.OrdinalIgnoreCase) ? "Current: Português (Brasil)" :
-                "Current: Auto (system)";
 
-            LanguageStatusLabel.Text = text;
+            LanguageStatusLabel.Text =
+                selected.Equals(LanguageSettings.English, StringComparison.OrdinalIgnoreCase) ? AppResources.Settings_Language_Current_English :
+                selected.Equals(LanguageSettings.PortugueseBrazil, StringComparison.OrdinalIgnoreCase) ? AppResources.Settings_Language_Current_Portuguese :
+                AppResources.Settings_Language_Current_Auto;
         }
     }
 }

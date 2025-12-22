@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:TransducerAppMaui.Resources.Strings"
              x:Class="TransducerAppMaui.Views.SettingsPage"
-             Title="Settings">
+             Title="{x:Static res:AppResources.Settings_Title}">
 
     <ScrollView>
         <VerticalStackLayout
@@ -10,19 +11,19 @@
             Spacing="25">
 
             <Label
-                Text="Settings"
+                Text="{x:Static res:AppResources.Settings_Title}"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
 
             <Label
-                Text="Logging (SQLite)"
+                Text="{x:Static res:AppResources.Settings_Logging_Title}"
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2" />
 
             <!-- Toggle de logging -->
             <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="6" ColumnSpacing="12">
                 <Label Grid.Row="0" Grid.Column="0"
-                       Text="Enable logging (save logs to DB)"
+                       Text="{x:Static res:AppResources.Settings_EnableLogging}"
                        FontSize="14"
                        TextColor="#212121"
                        VerticalOptions="Center" />
@@ -40,31 +41,31 @@
             </Grid>
 
             <Label
-                Text="Tip: Keep this OFF for best performance. Turn ON only when you need to record RX/TX logs and export them."
+                Text="{x:Static res:AppResources.Settings_TipLogging}"
                 FontSize="12"
                 TextColor="#616161" />
 
             <!-- ===== Idioma ===== -->
             <Label
-                Text="Language"
+                Text="{x:Static res:AppResources.Settings_Language_Title}"
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2" />
 
             <VerticalStackLayout Spacing="8">
-                <Label Text="App language"
+                <Label Text="{x:Static res:AppResources.Settings_AppLanguage}"
                        FontSize="14"
                        TextColor="#212121" />
 
                 <Picker x:Name="LanguagePicker"
-                        Title="Select language"
+                        Title="{x:Static res:AppResources.Settings_Language_Title}"
                         FontSize="14" />
 
                 <Label x:Name="LanguageStatusLabel"
-                       Text="Current: Auto (system)"
+                       Text="{x:Static res:AppResources.Settings_Language_Current_Auto}"
                        FontSize="12"
                        TextColor="#616161" />
 
-                <Label Text="Note: Changing language will refresh the app UI."
+                <Label Text="{x:Static res:AppResources.Settings_Language_Note}"
                        FontSize="12"
                        TextColor="#616161" />
             </VerticalStackLayout>

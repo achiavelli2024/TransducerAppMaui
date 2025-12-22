@@ -74,16 +74,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Resources\Strings\AppResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>AppResources.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\SettingsPage.xaml.cs">
 	    <DependentUpon>SettingsPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\Strings\AppResources.pt-BR.resx">
-	    <LastGenOutput>AppResources.pt-BR.Designer.cs</LastGenOutput>
-	    <Generator>PublicResXFileCodeGenerator</Generator>
-	  </EmbeddedResource>
 	  <EmbeddedResource Update="Resources\Strings\AppResources.resx">
 	    <Generator>PublicResXFileCodeGenerator</Generator>
 	    <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
