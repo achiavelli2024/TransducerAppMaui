@@ -35,3 +35,12 @@ log/
 # =========================
 .DS_Store
 Thumbs.db
+
+# Resx generated designer files
+*.Designer.cs
+
+# Resx generated designer files (only resources)
+**/Resources/**/*.Designer.cs
+
+
+

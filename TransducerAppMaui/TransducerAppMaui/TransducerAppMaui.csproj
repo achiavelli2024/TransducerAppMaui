@@ -74,16 +74,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Resources\Strings\AppResources.pt-BR.Designer.cs">
-	    <DependentUpon>AppResources.pt-BR.resx</DependentUpon>
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	  </Compile>
-	  <Compile Update="Resources\Strings\AppResources.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>AppResources.resx</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\SettingsPage.xaml.cs">
 	    <DependentUpon>SettingsPage.xaml</DependentUpon>
 	  </Compile>
