@@ -1,103 +1,122 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
-		Microsoft ResX Schema
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
 
-		Version 1.3
-
-		The primary goals of this format is to allow a simple XML format 
-		that is mostly human readable. The generation and parsing of the 
-		various data types are done through the TypeConverter classes 
-		associated with the data types.
-
-		Example:
-
-		... ado.net/XML headers & schema ...
-		<resheader name="resmimetype">text/microsoft-resx</resheader>
-		<resheader name="version">1.3</resheader>
-		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-		<data name="Name1">this is my long string</data>
-		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-			[base64 mime encoded serialized .NET Framework object]
-		</data>
-		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-			[base64 mime encoded string representing a byte array form of the .NET Framework object]
-		</data>
-
-		There are any number of "resheader" rows that contain simple 
-		name/value pairs.
-
-		Each data row contains a name, and value. The row also contains a 
-		type or mimetype. Type corresponds to a .NET class that support 
-		text/value conversion through the TypeConverter architecture. 
-		Classes that don't support this are serialized and stored with the 
-		mimetype set.
-
-		The mimetype is used for serialized objects, and tells the 
-		ResXResourceReader how to depersist the object. This is currently not 
-		extensible. For a given mimetype the value must be set accordingly:
-
-		Note - application/x-microsoft.net.object.binary.base64 is the format 
-		that the ResXResourceWriter will generate, however the reader can 
-		read any of the formats listed below.
-
-		mimetype: application/x-microsoft.net.object.binary.base64
-		value   : The object must be serialized with 
-			: System.Serialization.Formatters.Binary.BinaryFormatter
-			: and then encoded with base64 encoding.
-
-		mimetype: application/x-microsoft.net.object.soap.base64
-		value   : The object must be serialized with 
-			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-			: and then encoded with base64 encoding.
-
-		mimetype: application/x-microsoft.net.object.bytearray.base64
-		value   : The object must be serialized into a byte array 
-			: using a System.ComponentModel.TypeConverter
-			: and then encoded with base64 encoding.
-	-->
-	
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>1.3</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
   <data name="Settings_Title" xml:space="preserve">
     <value>Configurações</value>
   </data>
@@ -116,7 +135,6 @@
   <data name="Settings_TipLogging" xml:space="preserve">
     <value>Dica: mantenha DESLIGADO para melhor desempenho. Ligue apenas quando precisar gravar RX/TX e exportar.</value>
   </data>
-
   <data name="Settings_Language_Title" xml:space="preserve">
     <value>Idioma</value>
   </data>
@@ -132,7 +150,6 @@
   <data name="Settings_Language_Portuguese" xml:space="preserve">
     <value>Português (Brasil)</value>
   </data>
-
   <data name="Settings_Language_Current_Auto" xml:space="preserve">
     <value>Atual: Automático (sistema)</value>
   </data>
@@ -142,11 +159,9 @@
   <data name="Settings_Language_Current_Portuguese" xml:space="preserve">
     <value>Atual: Português (Brasil)</value>
   </data>
-
   <data name="Settings_Language_Note" xml:space="preserve">
     <value>Nota: ao mudar o idioma, a interface do app será atualizada.</value>
   </data>
-
   <data name="Dialog_Info" xml:space="preserve">
     <value>Info</value>
   </data>
@@ -162,154 +177,322 @@
   <data name="Dialog_LanguageFailed" xml:space="preserve">
     <value>Falha ao aplicar idioma: {0}</value>
   </data>
-
-  <!-- Home / Navigation -->
-  <data name="Nav_Home" xml:space="preserve"><value>Início</value></data>
-  <data name="Nav_Logs" xml:space="preserve"><value>Logs</value></data>
-  <data name="Nav_Settings" xml:space="preserve"><value>Configurações</value></data>
-
-  <data name="Home_Welcome_Title" xml:space="preserve"><value>Bem-vindo!</value></data>
-  <data name="Home_Subtitle" xml:space="preserve"><value>Aplicativo conecta ao Transdutor Phoenix</value></data>
-
-  <data name="Home_Button_FreeTest" xml:space="preserve"><value>Teste Livre</value></data>
-  <data name="Home_Button_Logs" xml:space="preserve"><value>Logs</value></data>
-  <data name="Home_Button_Settings" xml:space="preserve"><value>Configurações</value></data>
-
-  <!-- (Opcional) Semantics -->
-  <data name="Home_Hint_FreeTest" xml:space="preserve"><value>Abrir tela de Teste Livre</value></data>
-  <data name="Home_Hint_Logs" xml:space="preserve"><value>Abrir tela de Logs</value></data>
-  <data name="Home_Hint_Settings" xml:space="preserve"><value>Abrir Configurações</value></data>
-
-
-
-
-  <!-- Logs -->
-  <data name="Logs_Title" xml:space="preserve"><value>Logs</value></data>
-  <data name="Logs_Header" xml:space="preserve"><value>Logs (SQLite)</value></data>
-
-  <data name="Logs_Button_Load" xml:space="preserve"><value>CARREGAR</value></data>
-  <data name="Logs_Button_LoadMore" xml:space="preserve"><value>+ MAIS</value></data>
-  <data name="Logs_Button_ClearUi" xml:space="preserve"><value>LIMPAR TELA</value></data>
-  <data name="Logs_Button_ExportCsv" xml:space="preserve"><value>EXPORTAR CSV</value></data>
-  <data name="Logs_Button_ClearDb" xml:space="preserve"><value>LIMPAR DB</value></data>
-
-  <data name="Logs_Info_Ready" xml:space="preserve"><value>Pronto (clique em CARREGAR)</value></data>
-  <data name="Logs_Info_Loading" xml:space="preserve"><value>Carregando...</value></data>
-  <data name="Logs_Info_UiCleared" xml:space="preserve"><value>Tela limpa (DB não alterado)</value></data>
-  <data name="Logs_Info_DbCleared" xml:space="preserve"><value>DB limpo</value></data>
-  <data name="Logs_Info_Error" xml:space="preserve"><value>Erro</value></data>
-
-  <!-- placeholders: {0}=added, {1}=showing, {2}=total -->
-  <data name="Logs_Info_LoadedFormat" xml:space="preserve"><value>+{0} | Exibindo {1} | Total {2}</value></data>
-
-  <!-- Confirm / errors -->
-  <data name="Logs_Confirm_Title" xml:space="preserve"><value>Confirmar</value></data>
-  <data name="Logs_Confirm_ClearDb" xml:space="preserve"><value>Apagar todos os logs do banco?</value></data>
-  <data name="Common_Yes" xml:space="preserve"><value>SIM</value></data>
-  <data name="Common_No" xml:space="preserve"><value>NÃO</value></data>
-
-  <data name="Logs_Error_Load" xml:space="preserve"><value>Falha ao carregar logs: {0}</value></data>
-  <data name="Logs_Error_Clear" xml:space="preserve"><value>Falha ao limpar logs: {0}</value></data>
-  <data name="Logs_Error_Export" xml:space="preserve"><value>Falha ao exportar logs: {0}</value></data>
-
-  <!-- Item actions -->
-  <data name="Logs_Item_ActionSheetTitle" xml:space="preserve"><value>Log</value></data>
-  <data name="Common_Copy" xml:space="preserve"><value>Copiar</value></data>
-  <data name="Logs_Item_ViewFull" xml:space="preserve"><value>Ver completo</value></data>
-  <data name="Logs_Item_FullTitle" xml:space="preserve"><value>Log completo</value></data>
-
-  <!-- Share -->
-  <data name="Logs_Share_Title" xml:space="preserve"><value>Exportar Logs (CSV)</value></data>
-
-  <!-- FreeTest / Transducer (UI - XAML) -->
-  <data name="FreeTest_Title" xml:space="preserve"><value>Transdutor</value></data>
-
-  <data name="FreeTest_Section_Connection" xml:space="preserve"><value>Conexão</value></data>
-  <data name="FreeTest_Label_Ip" xml:space="preserve"><value>IP:</value></data>
-  <data name="FreeTest_Placeholder_Ip" xml:space="preserve"><value>192.168.4.1</value></data>
-  <data name="FreeTest_Button_Connect" xml:space="preserve"><value>Conectar</value></data>
-  <data name="FreeTest_Button_Disconnect" xml:space="preserve"><value>Desconectar</value></data>
-  <data name="FreeTest_Status_Disconnected" xml:space="preserve"><value>Desconectado</value></data>
-  <data name="FreeTest_Label_ShowTrace" xml:space="preserve"><value>Mostrar trace</value></data>
-  <data name="FreeTest_Label_ShowStats" xml:space="preserve"><value>Mostrar stats</value></data>
-  <data name="FreeTest_Label_Reconnection" xml:space="preserve"><value>Reconexões: {0}</value></data>
-  <data name="FreeTest_Label_Uptime" xml:space="preserve"><value>Tempo ativo: {0}</value></data>
-
-  <data name="FreeTest_Section_LiveValues" xml:space="preserve"><value>Valores ao vivo</value></data>
-  <data name="FreeTest_Label_Torque" xml:space="preserve"><value>Torque</value></data>
-  <data name="FreeTest_Label_Angle" xml:space="preserve"><value>Ângulo</value></data>
-  <data name="FreeTest_Label_Results" xml:space="preserve"><value>Resultados</value></data>
-
-  <data name="FreeTest_Section_Parameters" xml:space="preserve"><value>Parâmetros</value></data>
-  <data name="FreeTest_Label_Threshold" xml:space="preserve"><value>Threshold:</value></data>
-  <data name="FreeTest_Label_Timeout" xml:space="preserve"><value>Timeout:</value></data>
-  <data name="FreeTest_Label_Frequency" xml:space="preserve"><value>Frequência:</value></data>
-  <data name="FreeTest_Label_Min" xml:space="preserve"><value>Mín:</value></data>
-  <data name="FreeTest_Label_Nom" xml:space="preserve"><value>Nom:</value></data>
-  <data name="FreeTest_Label_Max" xml:space="preserve"><value>Máx:</value></data>
-  <data name="FreeTest_Label_Tool" xml:space="preserve"><value>Ferramenta:</value></data>
-  <data name="FreeTest_Picker_ToolType_Title" xml:space="preserve"><value>Selecione a ferramenta</value></data>
-
-  <data name="FreeTest_Status_Idle" xml:space="preserve"><value>Status: Parado</value></data>
-  <data name="FreeTest_Stats_Mean" xml:space="preserve"><value>Média: n/a</value></data>
-  <data name="FreeTest_Stats_Cm" xml:space="preserve"><value>Cm: n/a</value></data>
-  <data name="FreeTest_Stats_Cmk" xml:space="preserve"><value>Cmk: n/a</value></data>
-
-  <data name="FreeTest_Section_ResultsHistory" xml:space="preserve"><value>Histórico de resultados</value></data>
-  <data name="FreeTest_Button_ExportResults" xml:space="preserve"><value>EXPORTAR RESULTADOS</value></data>
-  <data name="FreeTest_Button_ClearResults" xml:space="preserve"><value>Limpar resultados</value></data>
-
-  <data name="FreeTest_Button_InitRead" xml:space="preserve"><value>Iniciar leitura</value></data>
-  <data name="FreeTest_Button_Stop" xml:space="preserve"><value>Parar</value></data>
-  <data name="FreeTest_Button_Zero" xml:space="preserve"><value>Zerar Tq/An</value></data>
-
-  <data name="FreeTest_Button_ClearLog" xml:space="preserve"><value>Limpar log</value></data>
-  <data name="FreeTest_Button_CopyLog" xml:space="preserve"><value>Copiar log</value></data>
-  <data name="FreeTest_Label_ShowLogs" xml:space="preserve"><value>Mostrar logs</value></data>
-  <data name="FreeTest_Label_PauseLogs" xml:space="preserve"><value>Pausar logs</value></data>
-  <data name="FreeTest_Button_ExportLogs" xml:space="preserve"><value>EXPORTAR LOGS</value></data>
-  <data name="FreeTest_Section_Logs" xml:space="preserve"><value>Logs</value></data>
-
-
-
-  <!-- FreeTest (Code-behind) - Alerts/Confirm -->
-  <data name="FreeTest_Alert_WarningTitle" xml:space="preserve"><value>Aviso</value></data>
-  <data name="FreeTest_Alert_ErrorTitle" xml:space="preserve"><value>Erro</value></data>
-
-  <data name="FreeTest_Warn_ConnectBefore" xml:space="preserve"><value>Conecte ao transdutor antes.</value></data>
-
-  <data name="FreeTest_Confirm_Params_Title" xml:space="preserve"><value>Confirmar parâmetros</value></data>
-  <data name="FreeTest_Confirm_Params_Proceed" xml:space="preserve"><value>Prosseguir</value></data>
-  <data name="FreeTest_Confirm_Params_Cancel" xml:space="preserve"><value>Cancelar</value></data>
-
-  <data name="FreeTest_Error_InitRead" xml:space="preserve"><value>Falha no InitRead: {0}</value></data>
-  <data name="FreeTest_Error_Stop" xml:space="preserve"><value>Falha ao parar: {0}</value></data>
-  <data name="FreeTest_Error_Connect" xml:space="preserve"><value>Falha ao conectar: {0}</value></data>
-  <data name="FreeTest_Error_Disconnect" xml:space="preserve"><value>Falha ao desconectar: {0}</value></data>
-
-
-  <!-- FreeTest (Code-behind) - Status/Connection -->
-  <data name="FreeTest_Conn_Connecting" xml:space="preserve"><value>Conectando</value></data>
-  <data name="FreeTest_Conn_Connected" xml:space="preserve"><value>Conectado</value></data>
-  <data name="FreeTest_Conn_Disconnected" xml:space="preserve"><value>Desconectado</value></data>
-
-  <data name="FreeTest_Status_Connecting" xml:space="preserve"><value>Status: Conectando</value></data>
-  <data name="FreeTest_Status_Connected" xml:space="preserve"><value>Status: Conectado</value></data>
-  <data name="FreeTest_Status_Disconnected" xml:space="preserve"><value>Status: Desconectado</value></data>
-
-  <data name="FreeTest_Status_StartingAcq" xml:space="preserve"><value>Status: Iniciando aquisição...</value></data>
-  <data name="FreeTest_Status_AcqStarted" xml:space="preserve"><value>Status: Aquisição iniciada</value></data>
-  <data name="FreeTest_Status_Stopped" xml:space="preserve"><value>Status: Parado</value></data>
-
-  <!-- err code placeholder: ER{0:00} -->
-  <data name="FreeTest_Status_ErrorCode" xml:space="preserve"><value>Status: Erro ER{0:00}</value></data>
-  <data name="FreeTest_Status_ErrorGeneric" xml:space="preserve"><value>Status: Erro</value></data>
-  
-  
-  
-  
-  
-  
-  
-  
+  <data name="Nav_Home" xml:space="preserve">
+    <value>Início</value>
+  </data>
+  <data name="Nav_Logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="Nav_Settings" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
+  <data name="Home_Welcome_Title" xml:space="preserve">
+    <value>Bem-vindo!</value>
+  </data>
+  <data name="Home_Subtitle" xml:space="preserve">
+    <value>Aplicação para comunicação com o Transdutor Phoenix via interface de rede</value>
+  </data>
+  <data name="Home_Button_FreeTest" xml:space="preserve">
+    <value>Teste Livre</value>
+  </data>
+  <data name="Home_Button_Logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="Home_Button_Settings" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
+  <data name="Home_Hint_FreeTest" xml:space="preserve">
+    <value>Abrir tela de Teste Livre</value>
+  </data>
+  <data name="Home_Hint_Logs" xml:space="preserve">
+    <value>Abrir tela de Logs</value>
+  </data>
+  <data name="Home_Hint_Settings" xml:space="preserve">
+    <value>Abrir Configurações</value>
+  </data>
+  <data name="Logs_Title" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="Logs_Header" xml:space="preserve">
+    <value>Logs (SQLite)</value>
+  </data>
+  <data name="Logs_Button_Load" xml:space="preserve">
+    <value>CARREGAR</value>
+  </data>
+  <data name="Logs_Button_LoadMore" xml:space="preserve">
+    <value>+ MAIS</value>
+  </data>
+  <data name="Logs_Button_ClearUi" xml:space="preserve">
+    <value>LIMPAR TELA</value>
+  </data>
+  <data name="Logs_Button_ExportCsv" xml:space="preserve">
+    <value>EXPORTAR CSV</value>
+  </data>
+  <data name="Logs_Button_ClearDb" xml:space="preserve">
+    <value>LIMPAR DB</value>
+  </data>
+  <data name="Logs_Info_Ready" xml:space="preserve">
+    <value>Pronto (clique em CARREGAR)</value>
+  </data>
+  <data name="Logs_Info_Loading" xml:space="preserve">
+    <value>Carregando...</value>
+  </data>
+  <data name="Logs_Info_UiCleared" xml:space="preserve">
+    <value>Tela limpa (DB não alterado)</value>
+  </data>
+  <data name="Logs_Info_DbCleared" xml:space="preserve">
+    <value>DB limpo</value>
+  </data>
+  <data name="Logs_Info_Error" xml:space="preserve">
+    <value>Erro</value>
+  </data>
+  <data name="Logs_Info_LoadedFormat" xml:space="preserve">
+    <value>+{0} | Exibindo {1} | Total {2}</value>
+  </data>
+  <data name="Logs_Confirm_Title" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="Logs_Confirm_ClearDb" xml:space="preserve">
+    <value>Apagar todos os logs do banco?</value>
+  </data>
+  <data name="Common_Yes" xml:space="preserve">
+    <value>SIM</value>
+  </data>
+  <data name="Common_No" xml:space="preserve">
+    <value>NÃO</value>
+  </data>
+  <data name="Logs_Error_Load" xml:space="preserve">
+    <value>Falha ao carregar logs: {0}</value>
+  </data>
+  <data name="Logs_Error_Clear" xml:space="preserve">
+    <value>Falha ao limpar logs: {0}</value>
+  </data>
+  <data name="Logs_Error_Export" xml:space="preserve">
+    <value>Falha ao exportar logs: {0}</value>
+  </data>
+  <data name="Logs_Item_ActionSheetTitle" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="Common_Copy" xml:space="preserve">
+    <value>Copiar</value>
+  </data>
+  <data name="Logs_Item_ViewFull" xml:space="preserve">
+    <value>Ver completo</value>
+  </data>
+  <data name="Logs_Item_FullTitle" xml:space="preserve">
+    <value>Log completo</value>
+  </data>
+  <data name="Logs_Share_Title" xml:space="preserve">
+    <value>Exportar Logs (CSV)</value>
+  </data>
+  <data name="FreeTest_Title" xml:space="preserve">
+    <value>Transdutor</value>
+  </data>
+  <data name="FreeTest_Section_Connection" xml:space="preserve">
+    <value>Conexão</value>
+  </data>
+  <data name="FreeTest_Label_Ip" xml:space="preserve">
+    <value>IP:</value>
+  </data>
+  <data name="FreeTest_Placeholder_Ip" xml:space="preserve">
+    <value>192.168.4.1</value>
+  </data>
+  <data name="FreeTest_Button_Connect" xml:space="preserve">
+    <value>Conectar</value>
+  </data>
+  <data name="FreeTest_Button_Disconnect" xml:space="preserve">
+    <value>Desconectar</value>
+  </data>
+  <data name="FreeTest_Status_Disconnected" xml:space="preserve">
+    <value>Status: Desconectado</value>
+  </data>
+  <data name="FreeTest_Label_ShowTrace" xml:space="preserve">
+    <value>Mostrar trace</value>
+  </data>
+  <data name="FreeTest_Label_ShowStats" xml:space="preserve">
+    <value>Mostrar stats</value>
+  </data>
+  <data name="FreeTest_Label_Reconnection" xml:space="preserve">
+    <value>Reconexões: {0}</value>
+  </data>
+  <data name="FreeTest_Label_Uptime" xml:space="preserve">
+    <value>Tempo ativo: {0}</value>
+  </data>
+  <data name="FreeTest_Section_LiveValues" xml:space="preserve">
+    <value>Valores ao vivo</value>
+  </data>
+  <data name="FreeTest_Label_Torque" xml:space="preserve">
+    <value>Torque</value>
+  </data>
+  <data name="FreeTest_Label_Angle" xml:space="preserve">
+    <value>Ângulo</value>
+  </data>
+  <data name="FreeTest_Label_Results" xml:space="preserve">
+    <value>Resultados</value>
+  </data>
+  <data name="FreeTest_Section_Parameters" xml:space="preserve">
+    <value>Parâmetros</value>
+  </data>
+  <data name="FreeTest_Label_Threshold" xml:space="preserve">
+    <value>Threshold:</value>
+  </data>
+  <data name="FreeTest_Label_Timeout" xml:space="preserve">
+    <value>Timeout:</value>
+  </data>
+  <data name="FreeTest_Label_Frequency" xml:space="preserve">
+    <value>Frequência:</value>
+  </data>
+  <data name="FreeTest_Label_Min" xml:space="preserve">
+    <value>Mín:</value>
+  </data>
+  <data name="FreeTest_Label_Nom" xml:space="preserve">
+    <value>Nom:</value>
+  </data>
+  <data name="FreeTest_Label_Max" xml:space="preserve">
+    <value>Máx:</value>
+  </data>
+  <data name="FreeTest_Label_Tool" xml:space="preserve">
+    <value>Ferramenta:</value>
+  </data>
+  <data name="FreeTest_Picker_ToolType_Title" xml:space="preserve">
+    <value>Selecione a ferramenta</value>
+  </data>
+  <data name="FreeTest_Status_Idle" xml:space="preserve">
+    <value>Status: Parado</value>
+  </data>
+  <data name="FreeTest_Stats_Mean" xml:space="preserve">
+    <value>Média: n/a</value>
+  </data>
+  <data name="FreeTest_Stats_Cm" xml:space="preserve">
+    <value>Cm: n/a</value>
+  </data>
+  <data name="FreeTest_Stats_Cmk" xml:space="preserve">
+    <value>Cmk: n/a</value>
+  </data>
+  <data name="FreeTest_Section_ResultsHistory" xml:space="preserve">
+    <value>Histórico de resultados</value>
+  </data>
+  <data name="FreeTest_Button_ExportResults" xml:space="preserve">
+    <value>EXPORTAR RESULTADOS</value>
+  </data>
+  <data name="FreeTest_Button_ClearResults" xml:space="preserve">
+    <value>Limpar resultados</value>
+  </data>
+  <data name="FreeTest_Button_InitRead" xml:space="preserve">
+    <value>Iniciar leitura</value>
+  </data>
+  <data name="FreeTest_Button_Stop" xml:space="preserve">
+    <value>Parar</value>
+  </data>
+  <data name="FreeTest_Button_Zero" xml:space="preserve">
+    <value>Zerar Tq/An</value>
+  </data>
+  <data name="FreeTest_Button_ClearLog" xml:space="preserve">
+    <value>Limpar log</value>
+  </data>
+  <data name="FreeTest_Button_CopyLog" xml:space="preserve">
+    <value>Copiar log</value>
+  </data>
+  <data name="FreeTest_Label_ShowLogs" xml:space="preserve">
+    <value>Mostrar logs</value>
+  </data>
+  <data name="FreeTest_Label_PauseLogs" xml:space="preserve">
+    <value>Pausar logs</value>
+  </data>
+  <data name="FreeTest_Button_ExportLogs" xml:space="preserve">
+    <value>EXPORTAR LOGS</value>
+  </data>
+  <data name="FreeTest_Section_Logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="FreeTest_Alert_WarningTitle" xml:space="preserve">
+    <value>Aviso</value>
+  </data>
+  <data name="FreeTest_Alert_ErrorTitle" xml:space="preserve">
+    <value>Erro</value>
+  </data>
+  <data name="FreeTest_Warn_ConnectBefore" xml:space="preserve">
+    <value>Conecte ao transdutor antes.</value>
+  </data>
+  <data name="FreeTest_Confirm_Params_Title" xml:space="preserve">
+    <value>Confirmar parâmetros</value>
+  </data>
+  <data name="FreeTest_Confirm_Params_Proceed" xml:space="preserve">
+    <value>Prosseguir</value>
+  </data>
+  <data name="FreeTest_Confirm_Params_Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="FreeTest_Error_InitRead" xml:space="preserve">
+    <value>Falha no InitRead: {0}</value>
+  </data>
+  <data name="FreeTest_Error_Stop" xml:space="preserve">
+    <value>Falha ao parar: {0}</value>
+  </data>
+  <data name="FreeTest_Error_Connect" xml:space="preserve">
+    <value>Falha ao conectar: {0}</value>
+  </data>
+  <data name="FreeTest_Error_Disconnect" xml:space="preserve">
+    <value>Falha ao desconectar: {0}</value>
+  </data>
+  <data name="FreeTest_Conn_Connecting" xml:space="preserve">
+    <value>Conectando</value>
+  </data>
+  <data name="FreeTest_Conn_Connected" xml:space="preserve">
+    <value>Conectado</value>
+  </data>
+  <data name="FreeTest_Conn_Disconnected" xml:space="preserve">
+    <value>Desconectado</value>
+  </data>
+  <data name="FreeTest_Status_Connecting" xml:space="preserve">
+    <value>Status: Conectando</value>
+  </data>
+  <data name="FreeTest_Status_Connected" xml:space="preserve">
+    <value>Status: Conectado</value>
+  </data>
+  <data name="FreeTest_Status_StartingAcq" xml:space="preserve">
+    <value>Status: Iniciando aquisição...</value>
+  </data>
+  <data name="FreeTest_Status_AcqStarted" xml:space="preserve">
+    <value>Status: Aquisição iniciada</value>
+  </data>
+  <data name="FreeTest_Status_Stopped" xml:space="preserve">
+    <value>Status: Parado</value>
+  </data>
+  <data name="FreeTest_Status_ErrorCode" xml:space="preserve">
+    <value>Status: Erro ER{0:00}</value>
+  </data>
+  <data name="FreeTest_Status_ErrorGeneric" xml:space="preserve">
+    <value>Status: Erro</value>
+  </data>
+  <data name="FreeTest_Confirm_Params_Body" xml:space="preserve">
+    <value>Confirme os parâmetros do teste:{9}{9}Torque mínimo:  {0} Nm{9}Torque nominal: {1} Nm{9}Torque máximo:  {2} Nm{9}{9}Threshold inicial: {3} Nm{9}Threshold final:   {4} Nm{9}Timeout fim (ms):  {5}{9}{9}Frequência (hz):  {6}{9}{9}Ferramenta: {7}</value>
+  </data>
+  <data name="FreeTest_ToolType_1" xml:space="preserve">
+    <value>Ferramenta eletrônica com cabo</value>
+  </data>
+  <data name="FreeTest_ToolType_2" xml:space="preserve">
+    <value>Ferramenta de impulso</value>
+  </data>
+  <data name="FreeTest_ToolType_3" xml:space="preserve">
+    <value>Chave de estalo (click)</value>
+  </data>
+  <data name="FreeTest_ToolType_4" xml:space="preserve">
+    <value>Chave digital/analógica</value>
+  </data>
+  <data name="FreeTest_ToolType_5" xml:space="preserve">
+    <value>Ferramenta pneumática</value>
+  </data>
+  <data name="FreeTest_ToolType_6" xml:space="preserve">
+    <value>Ferramenta sem fio</value>
+  </data>
+  <data name="FreeTest_ToolType_7" xml:space="preserve">
+    <value>Ferramenta sem fio transdutorada</value>
+  </data>
+  <data name="FreeTest_ToolType_8" xml:space="preserve">
+    <value>Ferramenta com embreagem shut-off</value>
+  </data>
+  <data name="FreeTest_ToolType_9" xml:space="preserve">
+    <value>Vazio</value>
+  </data>
 </root>

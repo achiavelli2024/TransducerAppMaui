@@ -6,71 +6,104 @@
              Title="{x:Static res:AppResources.Settings_Title}">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
+        <Grid Padding="16"
+              MaximumWidthRequest="960">
 
-            <Label
-                Text="{x:Static res:AppResources.Settings_Title}"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+            <VerticalStackLayout Spacing="16">
 
-            <Label
-                Text="{x:Static res:AppResources.Settings_Logging_Title}"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2" />
+                <Label Text="{x:Static res:AppResources.Settings_Title}"
+                       Style="{StaticResource Headline}"
+                       SemanticProperties.HeadingLevel="Level1" />
 
-            <!-- Toggle de logging -->
-            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="6" ColumnSpacing="12">
-                <Label Grid.Row="0" Grid.Column="0"
-                       Text="{x:Static res:AppResources.Settings_EnableLogging}"
-                       FontSize="14"
-                       TextColor="#212121"
-                       VerticalOptions="Center" />
+                <!-- ✅ DEFAULT (NARROW): 1 coluna, 2 linhas -->
+                <Grid x:Name="SectionsGrid"
+                      RowSpacing="16"
+                      ColumnSpacing="16"
+                      RowDefinitions="Auto,Auto"
+                      ColumnDefinitions="*">
 
-                <Switch x:Name="LoggingEnabledSwitch"
-                        Grid.Row="0" Grid.Column="1"
-                        HorizontalOptions="End"
-                        VerticalOptions="Center" />
+                    <!-- CARD: Logging (linha 0) -->
+                    <Frame x:Name="LoggingCard"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Padding="14"
+                           CornerRadius="10"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}"
+                           BorderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}">
 
-                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                       x:Name="LoggingStatusLabel"
-                       Text="Status: Unknown"
-                       FontSize="12"
-                       TextColor="#616161" />
-            </Grid>
+                        <VerticalStackLayout Spacing="12">
 
-            <Label
-                Text="{x:Static res:AppResources.Settings_TipLogging}"
-                FontSize="12"
-                TextColor="#616161" />
+                            <Label Text="{x:Static res:AppResources.Settings_Logging_Title}"
+                                   Style="{StaticResource SubHeadline}"
+                                   SemanticProperties.HeadingLevel="Level2" />
 
-            <!-- ===== Idioma ===== -->
-            <Label
-                Text="{x:Static res:AppResources.Settings_Language_Title}"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2" />
+                            <Grid ColumnDefinitions="*,Auto"
+                                  RowDefinitions="Auto,Auto"
+                                  RowSpacing="6"
+                                  ColumnSpacing="12">
 
-            <VerticalStackLayout Spacing="8">
-                <Label Text="{x:Static res:AppResources.Settings_AppLanguage}"
-                       FontSize="14"
-                       TextColor="#212121" />
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="{x:Static res:AppResources.Settings_EnableLogging}"
+                                       FontSize="14"
+                                       TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}"
+                                       VerticalOptions="Center" />
 
-                <Picker x:Name="LanguagePicker"
-                        Title="{x:Static res:AppResources.Settings_Language_Title}"
-                        FontSize="14" />
+                                <Switch x:Name="LoggingEnabledSwitch"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Center" />
 
-                <Label x:Name="LanguageStatusLabel"
-                       Text="{x:Static res:AppResources.Settings_Language_Current_Auto}"
-                       FontSize="12"
-                       TextColor="#616161" />
+                                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                       x:Name="LoggingStatusLabel"
+                                       Text="Status: Unknown"
+                                       FontSize="12"
+                                       TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}" />
+                            </Grid>
 
-                <Label Text="{x:Static res:AppResources.Settings_Language_Note}"
-                       FontSize="12"
-                       TextColor="#616161" />
+                            <Label Text="{x:Static res:AppResources.Settings_TipLogging}"
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}" />
+
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- CARD: Language (linha 1) -->
+                    <Frame x:Name="LanguageCard"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Padding="14"
+                           CornerRadius="10"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}"
+                           BorderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}">
+
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="{x:Static res:AppResources.Settings_Language_Title}"
+                                   Style="{StaticResource SubHeadline}"
+                                   SemanticProperties.HeadingLevel="Level2" />
+
+                            <Label Text="{x:Static res:AppResources.Settings_AppLanguage}"
+                                   FontSize="14"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}" />
+
+                            <Picker x:Name="LanguagePicker"
+                                    Title="{x:Static res:AppResources.Settings_Language_Title}"
+                                    FontSize="14" />
+
+                            <Label x:Name="LanguageStatusLabel"
+                                   Text="{x:Static res:AppResources.Settings_Language_Current_Auto}"
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}" />
+
+                            <Label Text="{x:Static res:AppResources.Settings_Language_Note}"
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                </Grid>
+
             </VerticalStackLayout>
-
-        </VerticalStackLayout>
+        </Grid>
     </ScrollView>
-
 </ContentPage>

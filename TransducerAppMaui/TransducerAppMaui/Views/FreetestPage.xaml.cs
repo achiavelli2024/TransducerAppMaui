@@ -6,7 +6,6 @@ using TransducerAppMaui.Resources.Strings;
 using TransducerAppMaui.Services;
 using TransducerAppMaui.Services.Logging;
 
-
 namespace TransducerAppMaui.Views;
 
 public partial class FreeTestPage : ContentPage
@@ -20,39 +19,33 @@ public partial class FreeTestPage : ContentPage
     //private readonly ObservableCollection<string> _logLines = new();
     //private const int MAX_LOG_LINES = 2000;
 
-
-
-
-
     public FreeTestPage()
     {
         InitializeComponent();
 
         // Picker (labels amigáveis)
+        // ✅ Ajuste: agora as strings vêm do AppResources (EN/PT), mantendo a mesma ordem 1..9
         ToolTypePicker.ItemsSource = new[]
         {
-            "Corded electronic tool",
-            "Impulse tool",
-            "Click wrench",
-            "Digital/analog wrench",
-            "Pneumatic tool",
-            "Cordless tool",
-            "Cordless transducerized tool",
-            "Shut-off clutch tool",
-            "Empty"
+            AppResources.FreeTest_ToolType_1,
+            AppResources.FreeTest_ToolType_2,
+            AppResources.FreeTest_ToolType_3,
+            AppResources.FreeTest_ToolType_4,
+            AppResources.FreeTest_ToolType_5,
+            AppResources.FreeTest_ToolType_6,
+            AppResources.FreeTest_ToolType_7,
+            AppResources.FreeTest_ToolType_8,
+            AppResources.FreeTest_ToolType_9
         };
 
         // Pega serviço via DI
         _transducerService = Application.Current!.Handler!.MauiContext!.Services.GetService<ITransducerService>()
                            ?? throw new InvalidOperationException("ITransducerService não registrado no DI.");
 
-
         //_appLog = Application.Current!.Handler!.MauiContext!.Services.GetRequiredService<IAppLog>();
 
         // setar ItemsSource 1x
         //LogsCollection.ItemsSource = _logLines;
-
-
 
         // Defaults visuais (igual Xamarin)
         ApplyDefaultsToUi();
@@ -85,10 +78,6 @@ public partial class FreeTestPage : ContentPage
             //_appLog.OnLogAppended += OnAppLogAppended;
         }
 
-        
-
-
-
         // Reaplica estado atual do serviço na UI (importante ao voltar para a tela)
         OnConnectionChanged(_transducerService.IsConnected);
 
@@ -108,7 +97,6 @@ public partial class FreeTestPage : ContentPage
             _subscribed = false;
 
             //_appLog.OnLogAppended -= OnAppLogAppended;
-
         }
     }
 
@@ -121,12 +109,9 @@ public partial class FreeTestPage : ContentPage
         {
             //_logLines.Insert(0, rec.ToString());
             //if (_logLines.Count > MAX_LOG_LINES)
-                //_logLines.RemoveAt(_logLines.Count - 1);
+            //_logLines.RemoveAt(_logLines.Count - 1);
         });
-
     }
-
-
 
     private void ApplyDefaultsToUi()
     {
@@ -174,16 +159,18 @@ public partial class FreeTestPage : ContentPage
 
     private static string BuildConfirmationText(FreeTestParameters p)
     {
-        return
-            "Confirme os parâmetros do teste:\n\n" +
-            $"Torque mínimo:  {p.MinTorque.ToString("F3", CultureInfo.InvariantCulture)} Nm\n" +
-            $"Torque nominal: {p.NomTorque.ToString("F3", CultureInfo.InvariantCulture)} Nm\n" +
-            $"Torque máximo:  {p.MaxTorque.ToString("F3", CultureInfo.InvariantCulture)} Nm\n\n" +
-            $"Threshold inicial: {p.ThresholdIni.ToString("F3", CultureInfo.InvariantCulture)} Nm\n" +
-            $"Threshold final:   {p.ThresholdEnd.ToString("F3", CultureInfo.InvariantCulture)} Nm\n" +
-            $"Timeout fim (ms):  {p.TimeoutEndMs}\n\n" +
-            $"Frequência (hz):  {p.Frequency}\n\n" +
-            $"Ferramenta: {p.ToolType}";
+        // ✅ Ajuste: texto agora é localizado pelo resx (EN/PT) e mantém os mesmos números/formatos
+        return string.Format(
+            AppResources.FreeTest_Confirm_Params_Body,
+            p.MinTorque.ToString("F3", CultureInfo.InvariantCulture),
+            p.NomTorque.ToString("F3", CultureInfo.InvariantCulture),
+            p.MaxTorque.ToString("F3", CultureInfo.InvariantCulture),
+            p.ThresholdIni.ToString("F3", CultureInfo.InvariantCulture),
+            p.ThresholdEnd.ToString("F3", CultureInfo.InvariantCulture),
+            p.TimeoutEndMs,
+            p.Frequency,
+            p.ToolType,
+            Environment.NewLine);
     }
 
     private async void OnInitReadClicked(object? sender, EventArgs e)
@@ -228,7 +215,6 @@ public partial class FreeTestPage : ContentPage
             //StatusLabel.Text = "Status: Error";
             StatusLabel.Text = AppResources.FreeTest_Status_ErrorGeneric;
 
-
             // Em caso de erro, libera inputs
             SetParameterInputsEnabled(true);
             UpdateAcquisitionUiState();
@@ -242,7 +228,6 @@ public partial class FreeTestPage : ContentPage
             await _transducerService.StopAcquisitionAsync();
             //StatusLabel.Text = "Status: Stopped";
             StatusLabel.Text = AppResources.FreeTest_Status_Stopped;
-
 
             // Libera inputs ao parar
             SetParameterInputsEnabled(true);
@@ -259,12 +244,10 @@ public partial class FreeTestPage : ContentPage
         try
         {
             //StatusLabel.Text = "Status: Connecting";
-           //ConnectionStatusLabel.Text = "Connecting";
+            //ConnectionStatusLabel.Text = "Connecting";
 
             StatusLabel.Text = AppResources.FreeTest_Status_Connecting;
             ConnectionStatusLabel.Text = AppResources.FreeTest_Conn_Connecting;
-
-
 
             ConnectionIndicator.TextColor = Color.FromArgb("#FF9800"); // laranja
 
@@ -286,8 +269,6 @@ public partial class FreeTestPage : ContentPage
             ConnectionStatusLabel.Text = AppResources.FreeTest_Conn_Disconnected;
             StatusLabel.Text = AppResources.FreeTest_Status_Disconnected;
             ConnectionIndicator.TextColor = Color.FromArgb("#F44336");
-
-
         }
     }
 
@@ -322,8 +303,6 @@ public partial class FreeTestPage : ContentPage
                 ConnectionStatusLabel.Text = AppResources.FreeTest_Conn_Connected;
                 StatusLabel.Text = AppResources.FreeTest_Status_Connected;
 
-
-
                 ConnectButton.IsVisible = false;
                 DisconnectButton.IsVisible = true;
             }
@@ -335,7 +314,6 @@ public partial class FreeTestPage : ContentPage
                 //StatusLabel.Text = "Status: Disconnected";
                 ConnectionStatusLabel.Text = AppResources.FreeTest_Conn_Disconnected;
                 StatusLabel.Text = AppResources.FreeTest_Status_Disconnected;
-
 
                 ConnectButton.IsVisible = true;
                 DisconnectButton.IsVisible = false;
@@ -362,7 +340,6 @@ public partial class FreeTestPage : ContentPage
         {
             //StatusLabel.Text = $"Status: Error ER{err:00}";
             StatusLabel.Text = string.Format(AppResources.FreeTest_Status_ErrorCode, err);
-
         });
     }
 

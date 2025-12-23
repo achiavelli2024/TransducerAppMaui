@@ -8,9 +8,14 @@ namespace TransducerAppMaui.Views
     {
         private bool _loadingLanguage;
 
+        private const double WIDE_BREAKPOINT = 720;
+        private bool _isWideApplied;
+
         public SettingsPage()
         {
             InitializeComponent();
+
+            SizeChanged += (_, __) => ApplyResponsiveLayout(Width);
 
             LoggingEnabledSwitch.Toggled += LoggingEnabledSwitch_Toggled;
 
@@ -25,6 +30,12 @@ namespace TransducerAppMaui.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            // ✅ tenta aplicar agora
+            ApplyResponsiveLayout(Width);
+
+            // ✅ aplica de novo após o layout estar medido/renderizado (resolve o “só aparece 1 card até rotacionar”)
+            Dispatcher.Dispatch(() => ApplyResponsiveLayout(Width));
 
             var enabled = LoggingSettings.Enabled;
 
@@ -51,6 +62,43 @@ namespace TransducerAppMaui.Views
             finally
             {
                 _loadingLanguage = false;
+            }
+        }
+
+        private void ApplyResponsiveLayout(double width)
+        {
+            // ✅ se width ainda não existe, força narrow (não retorna)
+            var shouldBeWide = width > 0 && width >= WIDE_BREAKPOINT;
+
+            if (shouldBeWide == _isWideApplied) return;
+            _isWideApplied = shouldBeWide;
+
+            SectionsGrid.RowDefinitions.Clear();
+            SectionsGrid.ColumnDefinitions.Clear();
+
+            if (shouldBeWide)
+            {
+                SectionsGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
+                SectionsGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
+                SectionsGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
+
+                Grid.SetRow(LoggingCard, 0);
+                Grid.SetColumn(LoggingCard, 0);
+
+                Grid.SetRow(LanguageCard, 0);
+                Grid.SetColumn(LanguageCard, 1);
+            }
+            else
+            {
+                SectionsGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
+                SectionsGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
+                SectionsGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
+
+                Grid.SetRow(LoggingCard, 0);
+                Grid.SetColumn(LoggingCard, 0);
+
+                Grid.SetRow(LanguageCard, 1);
+                Grid.SetColumn(LanguageCard, 0);
             }
         }
 
@@ -95,7 +143,6 @@ namespace TransducerAppMaui.Views
 
                 await DisplayAlert(AppResources.Dialog_Info, AppResources.Dialog_LanguageApplied, AppResources.Dialog_Ok);
 
-                // ✅ refresh garantido no thread da UI
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
                     if (Application.Current != null)
